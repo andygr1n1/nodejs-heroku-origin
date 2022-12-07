@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext", // output `import`/`export` ES modules
+        "lib": ["es2021"],
+        //"module": "CommonJS",  // enables `import { InfluxDB } from 'influx'
+        "allowSyntheticDefaultImports": true, // allow default imports from modules with no default export. This does not affect code emit, just typechecking.
+        "moduleResolution": "node", // find modules in node_modules - https://github.com/Microsoft/TypeScript/issues/8189#issuecomment-212079251
+        "types": ["node"], // Influx uses built-in node modules like http or url
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "rootDir": "./",
+        "outDir": "./build",
+        "strict": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "isolatedModules": true /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */,
+        "skipLibCheck": true /* Skip type checking of declaration files. */,
+        "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
+        "resolveJsonModule": true,
+        "importsNotUsedAsValues": "error"
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules", "**/*.spec.ts"]
+}
