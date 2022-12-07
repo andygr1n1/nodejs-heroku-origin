@@ -8,7 +8,7 @@
         "nodejs": "node index.js",
         "tsnode": "ts-node-esm ./src/index.ts",
         "nodemon": "nodemon ./src/index.ts -e ejs,js,css,html,jpg,png,scss,ts",
-        "start": "nodemon ./src/index.ts -e ejs,js,css,html,jpg,png,scss,ts",
+        "start": "yarn tsc && node index.js",
         "tsc": "tsc --noEmit "
     },
     "keywords": [
