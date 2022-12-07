@@ -8,9 +8,14 @@
         "nodejs": "node index.js",
         "tsnode": "ts-node-esm ./src/index.ts",
         "nodemon": "nodemon ./src/index.ts -e ejs,js,css,html,jpg,png,scss,ts",
+        "start": "nodemon ./src/index.ts -e ejs,js,css,html,jpg,png,scss,ts",
         "tsc": "tsc --noEmit "
     },
-    "keywords": [],
+    "keywords": [
+        "heroku",
+        "andygr1n1",
+        "nodejs-heroku-origin"
+    ],
     "author": "andygr1n1",
     "license": "ISC",
     "type": "module",
@@ -30,5 +35,8 @@
         "express-async-errors": "^3.1.1",
         "express": "^4.18.2",
         "cors": "^2.8.5"
+    },
+    "engines": {
+        "node": "18.x"
     }
 }
