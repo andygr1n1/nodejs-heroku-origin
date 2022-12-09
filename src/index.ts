@@ -1,20 +1,24 @@
 // import { dirname } from 'path'
 // import { fileURLToPath } from 'url'
+import * as dotenv from 'dotenv'
+
 import express from 'express'
-import cors from 'cors'
-// const __dirname = dirname(fileURLToPath(import.meta.url))
 import { auth } from './utils/auth.js'
 import { errorHandling } from './utils/errorHandling.js'
 import 'express-async-errors'
+import { useAddons } from './addons/addons.js'
+// const __dirname = dirname(fileURLToPath(import.meta.url))
 
-const PORT = process.env.PORT || 4444
+/* configs */
+dotenv.config()
+const PORT = process.env.PORT || 4554
+/* configs */
+
 const app = express()
 
-app.use(cors())
-app.use(express.json())
+useAddons(app)
 
-app.use('/', express.static('public'))
-
+/* app * app * app * app * app * app * app * app * app * app *  */
 app.post('/articles', auth, (req, res) => res.send(req.body))
 app.get('/articles', auth, (req, res) => res.send('articles!'))
 
@@ -36,6 +40,9 @@ app.get('/errortest', (req, res) => {
 
 app.use(errorHandling)
 
+console.log('S3_BUCKET', process.env.S3_BUCKET)
+
+/* app * app * app * app * app * app * app * app * app * app *  */
 app.listen(PORT, () => {
     console.log(`server is listening on port: ${PORT}`)
 })
