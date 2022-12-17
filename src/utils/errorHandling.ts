@@ -11,3 +11,16 @@ export const errorHandling = (error: Error, _req: Request, res: Response, next: 
         })
     }
 }
+
+export const createError = (status: number, message: string, requestId = '-1') => {
+    return {
+        status,
+        errors: [
+            {
+                message,
+                status,
+            },
+        ],
+        requestId,
+    }
+}
