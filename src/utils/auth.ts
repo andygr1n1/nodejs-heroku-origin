@@ -29,7 +29,7 @@ export const checkJwtBySecretKey = expressjwt(
             secret: getSecretKey(),
             algorithms: ['HS256'],
         }
-    })()
+    })(),
 )
 
 export const auth = (req: Request, res: Response, next: NextFunction) => {

@@ -20,6 +20,6 @@ export const getJwtTokenSign = (user: User): string => {
             email: user.email,
         },
         JWT_SECRET_KEY,
-        { expiresIn: '48 hours' }
+        { expiresIn: '48 hours' },
     )
 }

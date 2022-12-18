@@ -1,5 +1,8 @@
 {
     "execMap": {
+        "watch": ["src"],
+        "ext": ".ts,.js",
+        "ignore": [],
         "ts": "ts-node-esm"
     }
 }

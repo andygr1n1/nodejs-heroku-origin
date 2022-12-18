@@ -1,6 +1,6 @@
 import cors from 'cors'
 import express, { Express } from 'express'
-import  bodyParser from 'body-parser'
+import bodyParser from 'body-parser'
 import { errorHandling } from '../utils/errorHandling.js'
 import 'express-async-errors'
 

@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
     return res.json({ login: 'andrew', password: 'password' })
 })
 
-app.get('/errortest', (req, res) => {
+app.get('/errortest', (/* req, res */) => {
     // console.log('req', req)
     // console.log('res', res)
 
@@ -60,7 +60,7 @@ app.get('/errortest', (req, res) => {
 })
 
 app.get('/authorized-token', (req, res) => {
-    var options = {
+    const options = {
         method: 'POST',
         url: 'https://dev-8kfuj05wdpybj2ua.eu.auth0.com/oauth/token',
         headers: { 'content-type': 'application/json' },
