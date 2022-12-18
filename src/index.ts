@@ -1,14 +1,13 @@
 import * as dotenv from 'dotenv'
 
 import express from 'express'
+
 import { auth, checkJwt, checkJwtBySecretKey } from './utils/auth.js'
 import { useAddons, useErrorHandling } from './addons/addons.js'
 import request from 'request'
 import { itLoginRoute } from './routes/it-notebook/login-user/login.it.route.js'
 import { itRegisterRoute } from './routes/it-notebook/register-user/register.it.route.js'
-// import { dirname } from 'path'
-// import { fileURLToPath } from 'url'
-// const __dirname = dirname(fileURLToPath(import.meta.url))
+import { kZenUploadImage } from './routes/kzen/upload-image/kZenUploadImage.route.js'
 
 /* configs */
 dotenv.config()
@@ -30,11 +29,17 @@ const app = express()
 
 useAddons(app)
 
-// login
+// it --- it --- it --- it ---it --- it --- it --- it
+// it-resgister
 itRegisterRoute(app)
 
-// login
+// it-login
 itLoginRoute(app)
+
+// kzen --- kzen --- kzen --- kzen ---kzen --- kzen --- kzen --- kzen
+
+// kzen upload image
+kZenUploadImage(app)
 
 /* app * app * app * app * app * app * app * app * app * app *  */
 app.post('/articles', auth, (req, res) => res.send(req.body))
