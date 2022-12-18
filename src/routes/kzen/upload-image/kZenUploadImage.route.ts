@@ -21,9 +21,11 @@ export const kZenUploadImage = (app: Express) => {
                 console.log('uploadPath', uploadPath)
                 //
                 imageFile.mv(uploadPath, function (err) {
-                    if (err) throw { err, description: 'imageFile.mv()', path: uploadPath }
+                    if (err) {
+                        res.status(500).send({ err, description: 'imageFile.mv()', path: uploadPath })
+                    }
 
-                    res.send({ path: `public/kzen-img/${imgTitle}`, status: 200 })
+                    res.status(200).send({ path: `public/kzen-img/${imgTitle}`, status: 200 })
                 })
             } else {
                 throw { msg: 'array upload functionality is disabled' }
