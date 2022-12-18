@@ -60,7 +60,8 @@
         "husky": "^8.0.2",
         "jsonwebtoken": "^8.5.1",
         "jwks-rsa": "^3.0.0",
-        "request": "^2.88.2"
+        "request": "^2.88.2",
+        "app-root-path": "^3.1.0"
     },
     "engines": {
         "node": "18.x"
