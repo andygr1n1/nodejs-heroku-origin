@@ -11,7 +11,7 @@ export const useAddons = (app: Express) => {
     app.use(bodyParser.json())
     app.use(fileUpload())
     app.use('/public', express.static('public'))
-    app.use('/public/kzen-img', express.static('public/kzen-img'))
+    app.use('/storage/kzen-img', express.static('storage/kzen-img'))
 }
 
 export const useErrorHandling = (app: Express) => {
