@@ -16,12 +16,14 @@ export const kZenUploadImage = (app: Express) => {
             const imageFile = req.files?.image
             if (!Array.isArray(imageFile)) {
                 //
-                const uploadPath = `${appRoot}/public/kzen-img/${crypto.randomUUID()}_crypto_${imageFile.name}`
+                const imgTitle = `${crypto.randomUUID()}_crypto_${imageFile.name}`
+                const uploadPath = `${appRoot}/public/kzen-img/${imgTitle}`
+                console.log('uploadPath', uploadPath)
                 //
                 imageFile.mv(uploadPath, function (err) {
-                    if (err) return res.status(500).send(err)
+                    if (err) throw { err, description: 'imageFile.mv()', path: uploadPath }
 
-                    res.send({ path: `${uploadPath.split('nodejs-heroku-origin/')[1]}`, status: 200 })
+                    res.send({ path: `public/kzen-img/${imgTitle}`, status: 200 })
                 })
             } else {
                 throw { msg: 'array upload functionality is disabled' }
