@@ -8,3 +8,8 @@ https://cryptic-thicket-06366.herokuapp.com/storage/kzen-img/da4bcb20-c005-42e0-
 
 list all files in directory::
 https://medium.com/stackfame/get-list-of-all-files-in-a-directory-in-node-js-befd31677ec5
+
+
+bunny:
+https://panel.bunny.net/
+https://docs.bunny.net/reference/get_-storagezonename-path-filename
