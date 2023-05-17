@@ -9,6 +9,7 @@ import { itLoginRoute } from './routes/it-notebook/login-user/login.it.route.js'
 import { itRegisterRoute } from './routes/it-notebook/register-user/register.it.route.js'
 import { kZenUploadImage } from './routes/kzen/upload-image/kZenUploadImage.route.js'
 import { kZenRemoveImage } from './routes/kzen/remove-image/kZenRemoveImage.route.js'
+import { kZenAutoRitualizeGoal } from './routes/kzen/auto-ritualize-goals/kZenAutoritualizeGoals.route.js'
 
 /* configs */
 dotenv.config()
@@ -42,6 +43,9 @@ itLoginRoute(app)
 // kzen upload image
 kZenUploadImage(app)
 kZenRemoveImage(app)
+
+// kzen autoRitualizeGoal
+kZenAutoRitualizeGoal(app)
 
 /* app * app * app * app * app * app * app * app * app * app *  */
 app.post('/articles', auth, (req, res) => res.send(req.body))

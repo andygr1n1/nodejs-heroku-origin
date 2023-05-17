@@ -1,0 +1,36 @@
+version: "3.8"
+networks:
+  gold-timer-network:
+    name: gold-timer-network
+services:
+  nodejs-heroku-origin-service:
+    container_name: nodejs-heroku-origin-container
+    image: grini-nodejs-heroku-origin
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8008:8008"
+    volumes:
+      - "/nodejs_heroku_origin/node_modules"
+      - "./:/nodejs_heroku_origin"
+    restart: unless-stopped
+    networks:
+      - gold-timer-network
+    environment:
+      NODE_ENV: development
+      DEVELOPMENT: 'true'
+      PORT: 8008
+      AUTH0_AUDIENCE: "https://nodejs-heroku-origin.com"
+      AUTH0_CLIENT_ID: "JFzvHvRUO6cl7FDmrEY1OHwbZuMcpTRu"
+      AUTH0_CLIENT_SECRET: "EiunNL3hbmBb6k6oYrRjeYSZ8ko_Vy9Elzpt-vc78se_DpYUK8bw1JNn4hA8Z1sx"
+      AUTH0_ISSUE: "https://dev-8kfuj05wdpybj2ua.eu.auth0.com/"
+      AUTH0_JWKS_URI: "https://dev-8kfuj05wdpybj2ua.eu.auth0.com/.well-known/jwks.json"
+      BUNNY_STORAGE_ACCESS_KEY: "23c1e41d-f5e0-4572-9952f893b4e6-fbb0-41c0"
+      BUNNY_STORAGE_URL_KZEN: "https://storage.bunnycdn.com/firebunny-storage/kzen"
+      JWT_SECRET_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+      X_API_KEY: "022569013"
+      XATA_API_KEY: "xau_OD6sSKvoae8FSrEvWswU2abuBXkBjc6R6"
+      VITE_CLIENT_ENDPOINT: "http://172.17.0.1:6080/v1/graphql/"
+      VITE_X_HASURA_ADMIN_SECRET: "grini"

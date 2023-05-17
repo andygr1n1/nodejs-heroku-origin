@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express'
-import { expressjwt, GetVerificationKey } from 'express-jwt'
+import { expressjwt, type GetVerificationKey } from 'express-jwt'
 import jwksRsa from 'jwks-rsa'
 
 import * as dotenv from 'dotenv'
