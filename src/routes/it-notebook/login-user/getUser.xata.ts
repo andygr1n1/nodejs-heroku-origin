@@ -1,4 +1,4 @@
-import { getXataClient, User } from '../../../xata.js'
+import { getXataClient, type User } from '../../../xata.js'
 
 export const getUser = async ({ email, password }: User): Promise<User | null> => {
     try {
