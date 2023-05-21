@@ -15,7 +15,12 @@ export interface IGoalRitual {
 }
 
 export type RitualGoalType = Pick<IGoal, 'id' | 'created_at' | 'finished_at'> & {
-    goal_ritual: { ritual_interval: number }
+    goal_ritual: { ritual_interval: number; ritual_type: RITUAL_TYPE_ENUM }
 }
 
 export type UpdatedRitualGoalType = Omit<RitualGoalType, 'goal_ritual'>
+
+export enum RITUAL_TYPE_ENUM {
+    INTERVAL_IN_DAYS = 'interval_in_days',
+    DAYS_OF_WEEK = 'days_of_week',
+}

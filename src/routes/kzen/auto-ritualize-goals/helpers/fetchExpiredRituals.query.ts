@@ -22,6 +22,7 @@ export const fetchExpiredRitualsQuery = async (): Promise<RitualGoalType[] | und
                     created_at
                     goal_ritual {
                         ritual_interval
+                        ritual_type
                     }
                 }
             }

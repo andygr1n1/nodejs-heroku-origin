@@ -21,11 +21,12 @@ export async function updateExpiredRituals() {
     console.log('expiredRitualGoals', expiredRitualGoals)
 
     expiredRitualGoals?.forEach((goal) => {
-        const { ritual_goal_created_at, ritual_goal_finished_at } = generateNewRitualCircle(
-            goal.goal_ritual.ritual_interval,
-            new Date(goal.created_at),
-            new Date(goal.finished_at),
-        )
+        const { ritual_goal_created_at, ritual_goal_finished_at } = generateNewRitualCircle({
+            ritual_type: goal.goal_ritual.ritual_type,
+            new_ritual_interval: goal.goal_ritual.ritual_interval,
+            goal_created_at: new Date(goal.created_at),
+            goal_finished_at: new Date(goal.finished_at),
+        })
 
         const goalToUpdate = { id: goal.id, created_at: ritual_goal_created_at, finished_at: ritual_goal_finished_at }
         updateRitualGoal(goalToUpdate)
