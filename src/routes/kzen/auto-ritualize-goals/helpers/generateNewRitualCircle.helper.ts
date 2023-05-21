@@ -1,5 +1,5 @@
 import { add, getDay } from 'date-fns'
-import { RITUAL_TYPE_ENUM } from './autoRitualizeGoals.enums'
+import { RITUAL_TYPE_ENUM } from './autoRitualizeGoals.enums.js'
 
 export const generateNewRitualCircle = (options: {
     ritual_type: RITUAL_TYPE_ENUM
