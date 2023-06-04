@@ -3,6 +3,7 @@ import { expressjwt, type GetVerificationKey } from 'express-jwt'
 import jwksRsa from 'jwks-rsa'
 
 import * as dotenv from 'dotenv'
+// import { getJwtTokenSign } from './jwt-token-sign.js'
 /* configs */
 dotenv.config()
 
@@ -42,6 +43,8 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
         res.status(401)
         return res.json({ message: 'X_API_KEY is invalid' })
     }
-
+    // res.status(200).send(
+    //     getJwtTokenSign({ email: 'andy.grini@gmail.com', name: 'andrei', password: '1231', id: 'xxx' }),
+    // )
     next()
 }

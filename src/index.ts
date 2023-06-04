@@ -2,14 +2,15 @@ import * as dotenv from 'dotenv'
 
 import express from 'express'
 
-import { auth, checkJwt, checkJwtBySecretKey } from './utils/auth.js'
+import { auth, checkJwt } from './utils/auth.js'
 import { useAddons, useErrorHandling } from './addons/addons.js'
 import request from 'request'
 import { itLoginRoute } from './routes/it-notebook/login-user/login.it.route.js'
 import { itRegisterRoute } from './routes/it-notebook/register-user/register.it.route.js'
 import { kZenUploadImage } from './routes/kzen/upload-image/kZenUploadImage.route.js'
 import { kZenRemoveImage } from './routes/kzen/remove-image/kZenRemoveImage.route.js'
-import { kZenAutoRitualizeGoal } from './routes/kzen/auto-ritualize-goals/kZenAutoritualizeGoals.route.js'
+import { kZenAutoRitualizeGoal } from './routes/kzen/auto-ritualize-goals/kZenAutoRitualizeGoal.route.js'
+import { kZenLogin } from './routes/kzen/login/kzenLogin.js'
 
 /* configs */
 dotenv.config()
@@ -32,13 +33,16 @@ const app = express()
 useAddons(app)
 
 // it --- it --- it --- it ---it --- it --- it --- it
-// it-resgister
+// it-register
 itRegisterRoute(app)
 
 // it-login
 itLoginRoute(app)
 
 // kzen --- kzen --- kzen --- kzen ---kzen --- kzen --- kzen --- kzen
+
+//kzen itLoginRoute
+kZenLogin(app)
 
 // kzen upload image
 kZenUploadImage(app)
@@ -52,7 +56,7 @@ app.post('/articles', auth, (req, res) => res.send(req.body))
 
 app.get('/articles', auth, (req, res) => res.send('articles!'))
 app.get('/authorized', checkJwt, (req, res) => res.send('Secured Resource'))
-app.get('/xroute', checkJwtBySecretKey, (req, res) => res.send('xroute has been opened'))
+app.get('/xroute', auth, (req, res) => res.send('xroute has been opened'))
 
 app.get('/', (req, res) => {
     // console.log('req', req)
