@@ -74,6 +74,6 @@
         "request": "^2.88.2"
     },
     "engines": {
-        "node": "19.x"
+        "node": "18.x"
     }
 }
