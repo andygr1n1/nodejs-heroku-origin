@@ -1,0 +1,38 @@
+version: "3.8"
+networks:
+  gold-timer-network:
+    name: gold-timer-network
+services:
+  nodejs-heroku-origin-service:
+    container_name: nodejs-heroku-origin-container
+    image: grini-nodejs-heroku-origin
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8008:8008"
+    volumes:
+      - "/nodejs_heroku_origin/node_modules"
+      - "./:/nodejs_heroku_origin"
+    restart: unless-stopped
+    networks:
+      - gold-timer-network
+    environment:
+      NODE_ENV: development
+      DEVELOPMENT: 'true'
+      PORT: 8008
+      AUTH0_AUDIENCE: 
+      AUTH0_CLIENT_ID: 
+      AUTH0_CLIENT_SECRET: 
+      AUTH0_ISSUE: 
+      AUTH0_JWKS_URI: 
+      BUNNY_STORAGE_ACCESS_KEY: 
+      BUNNY_STORAGE_URL_KZEN: 
+      JWT_SECRET_KEY: 
+      X_API_KEY:
+      XATA_API_KEY: 
+      VITE_CLIENT_ENDPOINT:
+      VITE_X_HASURA_ADMIN_SECRET:
+      KZEN_NEW_PASSWORD: 
+      NODEMAILER_EMAIL:

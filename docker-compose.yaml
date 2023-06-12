@@ -34,3 +34,5 @@ services:
       XATA_API_KEY: "xau_OD6sSKvoae8FSrEvWswU2abuBXkBjc6R6"
       VITE_CLIENT_ENDPOINT: "http://172.17.0.1:6080/v1/graphql/"
       VITE_X_HASURA_ADMIN_SECRET: "grini"
+      KZEN_NEW_PASSWORD: "http://localhost:9998/new_password"
+      NODEMAILER_EMAIL: "andrew.superstyle@gmail.com"
