@@ -53,14 +53,14 @@ export const kZenUploadImage = (app: Express) => {
 
                     await fetch(url, options)
                         .then(() => res.status(200).send({ image: imgTitle, status: 201 }))
-                        .then((json) => console.log(json))
+                        .then((json) => console.info(json))
                         .catch((err) => console.error('error:' + err))
                 })
             } else {
                 throw { msg: 'array upload functionality is disabled' }
             }
         } catch (e) {
-            console.log(e)
+            console.info(e)
             return res.status(500).send(e)
         }
     })

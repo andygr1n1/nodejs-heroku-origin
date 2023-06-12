@@ -26,14 +26,14 @@ export const kZenRemoveImage = (app: Express) => {
             }
 
             await fetch(url, options)
-                .then((json) => console.log(json))
+                .then((json) => console.info(json))
                 .then(() => res.status(200).send({ image: imgTitle, status: 201 }))
                 .catch((err) => console.error('error:' + err))
 
             const kZenStorage = `${appRoot}/storage/kzen-img/`
 
             fs.unlink(`${kZenStorage}${imgTitle}`, (e) => {
-                if (e) return console.log(e)
+                if (e) return console.info(e)
                 console.warn('image has been deleted successfully')
             })
         } catch (e) {

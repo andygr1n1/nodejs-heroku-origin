@@ -11,6 +11,8 @@ import { kZenUploadImage } from './routes/kzen/upload-image/kZenUploadImage.rout
 import { kZenRemoveImage } from './routes/kzen/remove-image/kZenRemoveImage.route.js'
 import { kZenAutoRitualizeGoal } from './routes/kzen/auto-ritualize-goals/kZenAutoRitualizeGoal.route.js'
 import { kZenLogin } from './routes/kzen/login/kzenLogin.js'
+import { kzenRegister } from './routes/kzen/register/kzenRegister.js'
+import { kzenRestore } from './routes/kzen/restore/kzenRestore.js'
 
 /* configs */
 dotenv.config()
@@ -41,8 +43,9 @@ itLoginRoute(app)
 
 // kzen --- kzen --- kzen --- kzen ---kzen --- kzen --- kzen --- kzen
 
-//kzen itLoginRoute
 kZenLogin(app)
+kzenRegister(app)
+kzenRestore(app)
 
 // kzen upload image
 kZenUploadImage(app)
@@ -59,16 +62,16 @@ app.get('/authorized', checkJwt, (req, res) => res.send('Secured Resource'))
 app.get('/xroute', auth, (req, res) => res.send('xroute has been opened'))
 
 app.get('/', (req, res) => {
-    // console.log('req', req)
-    // console.log('res', res)
+    // console.info('req', req)
+    // console.info('res', res)
 
     // res.send('Hello pro IT!')
     return res.json({ login: 'andrew', password: 'password' })
 })
 
 app.get('/errortest', (/* req, res */) => {
-    // console.log('req', req)
-    // console.log('res', res)
+    // console.info('req', req)
+    // console.info('res', res)
 
     // res.send('Hello pro IT!')
     throw new Error('Oh no, this is a backend error')
@@ -90,7 +93,7 @@ app.get('/authorized-token', (req, res) => {
 
     request(options, function (error, response, body) {
         if (error) throw new Error(error)
-        console.log(body)
+        console.info(body)
         res.send(body)
     })
 })
@@ -98,5 +101,5 @@ app.get('/authorized-token', (req, res) => {
 /* app * app * app * app * app * app * app * app * app * app *  */
 useErrorHandling(app)
 app.listen(PORT, () => {
-    console.log(`server is listening on port: ${PORT}`)
+    console.info(`server is listening on port: ${PORT}`)
 })

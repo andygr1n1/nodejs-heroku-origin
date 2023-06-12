@@ -37,6 +37,7 @@
         "@types/lodash": "^4.14.190",
         "@types/node": "^18.11.9",
         "@types/node-fetch": "2",
+        "@types/nodemailer": "^6.4.8",
         "@types/nodemon": "^1.19.2",
         "@types/request": "^2.48.8",
         "@typescript-eslint/eslint-plugin": "^5.46.1",
@@ -69,9 +70,10 @@
         "jsonwebtoken": "^8.5.1",
         "jwks-rsa": "^3.0.0",
         "node-fetch": "2",
+        "nodemailer": "^6.9.3",
         "request": "^2.88.2"
     },
     "engines": {
-        "node": "18.x"
+        "node": "19.x"
     }
 }

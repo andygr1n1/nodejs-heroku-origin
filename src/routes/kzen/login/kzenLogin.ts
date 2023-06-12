@@ -26,7 +26,7 @@ export const kZenLogin = (app: Express) => {
             res.status(200).send({ user_id: userId, remember: reqBody.remember })
         } catch (e) {
             console.info('userLoginId:::', e, format(zonedDate, pattern, { timeZone: 'Europe/Lisbon' }))
-            return res.status(500).send(e)
+            return res.status(401).send('unauthorized')
         }
     })
 }
