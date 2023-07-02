@@ -13,6 +13,8 @@ import { kZenAutoRitualizeGoal } from './routes/kzen/auto-ritualize-goals/kZenAu
 import { kZenLogin } from './routes/kzen/login/kzenLogin.js'
 import { kzenRegister } from './routes/kzen/register/kzenRegister.js'
 import { kzenRestore } from './routes/kzen/restore/kzenRestore.js'
+import { kZenUploadAvatar } from './routes/kzen/upload-avatar/kZenUploadAvatar.route.js'
+import { kZenRemoveAvatars } from './routes/kzen/upload-avatar/kZenRemoveAvatars.route.js'
 
 /* configs */
 dotenv.config()
@@ -50,6 +52,10 @@ kzenRestore(app)
 // kzen upload image
 kZenUploadImage(app)
 kZenRemoveImage(app)
+
+// kzen upload/remove avatar
+kZenUploadAvatar(app)
+kZenRemoveAvatars(app)
 
 // kzen autoRitualizeGoal
 kZenAutoRitualizeGoal(app)
