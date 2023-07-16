@@ -2,6 +2,7 @@ import type { Express } from 'express'
 import { KZEN_ROUTE_ENUM } from '../KZenRoute.enum.js'
 import fetch from 'node-fetch'
 import { auth } from '../../../utils/auth.js'
+import crypto from 'crypto'
 
 export const kzenUploadSprintImage = (app: Express) => {
     app.post(KZEN_ROUTE_ENUM.IMG_UPLOAD_SPRINT, auth, async function (req, res) {
