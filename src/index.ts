@@ -15,7 +15,8 @@ import { kzenRegister } from './routes/kzen/register/kzenRegister.js'
 import { kzenRestore } from './routes/kzen/restore/kzenRestore.js'
 import { kZenUploadAvatar } from './routes/kzen/upload-avatar/kZenUploadAvatar.route.js'
 import { kZenRemoveAvatars } from './routes/kzen/upload-avatar/kZenRemoveAvatars.route.js'
-import { kzenUploadSprintImage } from './routes/kzen/sprint-image-upload-remove/kzenUploadSprintImage.route.js'
+import { kzenUploadSprintImage } from './routes/kzen/sprint-image-upload/kzenUploadSprintImage.route.js'
+import { kzenSprintImageDelete } from './routes/kzen/sprint-image-delete/kzenSprintImageDelete.js'
 
 /* configs */
 dotenv.config()
@@ -60,6 +61,7 @@ kZenRemoveAvatars(app)
 
 // kzen upload/remove sprint image
 kzenUploadSprintImage(app)
+kzenSprintImageDelete(app)
 
 // kzen autoRitualizeGoal
 kZenAutoRitualizeGoal(app)
