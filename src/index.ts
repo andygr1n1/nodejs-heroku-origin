@@ -7,16 +7,13 @@ import { useAddons, useErrorHandling } from './addons/addons.js'
 import request from 'request'
 import { itLoginRoute } from './routes/it-notebook/login-user/login.it.route.js'
 import { itRegisterRoute } from './routes/it-notebook/register-user/register.it.route.js'
-import { kZenUploadImage } from './routes/kzen/upload-image/kZenUploadImage.route.js'
-import { kZenRemoveImage } from './routes/kzen/remove-image/kZenRemoveImage.route.js'
 import { kZenAutoRitualizeGoal } from './routes/kzen/auto-ritualize-goals/kZenAutoRitualizeGoal.route.js'
 import { kZenLogin } from './routes/kzen/login/kzenLogin.js'
 import { kzenRegister } from './routes/kzen/register/kzenRegister.js'
 import { kzenRestore } from './routes/kzen/restore/kzenRestore.js'
-import { kZenUploadAvatar } from './routes/kzen/upload-avatar/kZenUploadAvatar.route.js'
-import { kZenRemoveAvatars } from './routes/kzen/upload-avatar/kZenRemoveAvatars.route.js'
-import { kzenUploadSprintImage } from './routes/kzen/sprint-image-upload/kzenUploadSprintImage.route.js'
-import { kzenSprintImageDelete } from './routes/kzen/sprint-image-delete/kzenSprintImageDelete.js'
+import { kZenDeleteImageFromServer } from './routes/kzen/delete-image-from-server/kZenDeleteImageFromServer.js'
+import { KZEN_ROUTE_ENUM } from './routes/kzen/KZenRoute.enum.js'
+import { kZenUploadImageToServer } from './routes/kzen/upload-image-to-server/kZenUploadImageToServer.js'
 
 /* configs */
 dotenv.config()
@@ -51,17 +48,13 @@ kZenLogin(app)
 kzenRegister(app)
 kzenRestore(app)
 
-// kzen upload image
-kZenUploadImage(app)
-kZenRemoveImage(app)
-
-// kzen upload/remove avatar
-kZenUploadAvatar(app)
-kZenRemoveAvatars(app)
+// kzen upload/remove profile image
+kZenUploadImageToServer(app, KZEN_ROUTE_ENUM.PROFILE_IMAGE_UPLOAD, 'avatars')
+kZenDeleteImageFromServer(app, KZEN_ROUTE_ENUM.PROFILE_IMAGE_DELETE, 'avatars')
 
 // kzen upload/remove sprint image
-kzenUploadSprintImage(app)
-kzenSprintImageDelete(app)
+kZenUploadImageToServer(app, KZEN_ROUTE_ENUM.SPRINT_IMAGE_UPLOAD, 'sprints')
+kZenDeleteImageFromServer(app, KZEN_ROUTE_ENUM.SPRINT_IMAGE_DELETE, 'sprints')
 
 // kzen autoRitualizeGoal
 kZenAutoRitualizeGoal(app)
@@ -71,7 +64,6 @@ app.post('/articles', auth, (req, res) => res.send(req.body))
 
 app.get('/articles', auth, (req, res) => res.send('articles!'))
 app.get('/authorized', checkJwt, (req, res) => res.send('Secured Resource'))
-app.get('/xroute', auth, (req, res) => res.send('xroute has been opened'))
 
 app.get('/', (req, res) => {
     // console.info('req', req)

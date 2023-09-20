@@ -3,18 +3,20 @@ import { KZEN_ROUTE_ENUM } from '../KZenRoute.enum.js'
 import fetch from 'node-fetch'
 import { auth } from '../../../utils/auth.js'
 
-export const kZenRemoveAvatars = (app: Express) => {
-    app.delete(KZEN_ROUTE_ENUM.IMG_REMOVE_AVATAR, auth, async function (req, res) {
+export const kZenDeleteImageFromServer = (app: Express, route: KZEN_ROUTE_ENUM, folder: string) => {
+    app.post(route, auth, async function (req, res) {
         try {
-            if (!req.body) {
-                throw { msg: 'no image ID' }
+            const imgTitle = req.body.imgTitle
+            console.log('imgTitle', imgTitle)
+            if (!imgTitle) {
+                throw { msg: 'kZenProfileImageDelete:bad data' }
             }
-            const imgTitle = req.body.data
+
+            const url = `${process.env.BUNNY_STORAGE_URL_KZEN}/${folder}/${imgTitle}`
 
             const AccessKey = process.env.BUNNY_STORAGE_ACCESS_KEY
             if (!AccessKey) throw { message: 'AccessKey was not defined for Bunny connection' }
 
-            const url = `${process.env.BUNNY_STORAGE_URL_KZEN}/avatars/${imgTitle}`
             const options = {
                 method: 'DELETE',
                 headers: {
