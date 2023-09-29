@@ -48,6 +48,8 @@ export const generateEstimationForRitualDaysOfWeek = (created: Date, finishPoint
         /* create = 5(friday) finish = 2(tuesday) */
         /* 7 - 5 + 2 */
         pushDays = 7 - createPoint + finishPoint
+    } else if (createPoint === finishPoint) {
+        pushDays = 7
     } else {
         /* create = 3(wednesday) finish = 6(saturday)  */
         /* create = 6 - 3  */
