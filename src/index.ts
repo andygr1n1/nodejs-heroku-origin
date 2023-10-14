@@ -14,6 +14,7 @@ import { kzenRestore } from './routes/kzen/restore/kzenRestore.js'
 import { kZenDeleteImageFromServer } from './routes/kzen/delete-image-from-server/kZenDeleteImageFromServer.js'
 import { KZEN_ROUTE_ENUM } from './routes/kzen/KZenRoute.enum.js'
 import { kZenUploadImageToServer } from './routes/kzen/upload-image-to-server/kZenUploadImageToServer.js'
+import { kZenDestroyData } from './routes/kzen/destroy-data/kZenDestroyData.js'
 
 /* configs */
 dotenv.config()
@@ -58,6 +59,8 @@ kZenDeleteImageFromServer(app, KZEN_ROUTE_ENUM.SPRINT_IMAGE_DELETE, 'sprints')
 
 // kzen autoRitualizeGoal
 kZenAutoRitualizeGoal(app)
+
+kZenDestroyData(app)
 
 /* app * app * app * app * app * app * app * app * app * app *  */
 app.post('/articles', auth, (req, res) => res.send(req.body))

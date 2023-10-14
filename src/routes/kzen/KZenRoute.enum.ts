@@ -4,6 +4,7 @@ export enum KZEN_ROUTE_ENUM {
     SPRINT_IMAGE_UPLOAD = '/kzen/sprint-image-upload',
     SPRINT_IMAGE_DELETE = '/kzen/sprint-image-delete',
     AUTO_RITUALIZE_GOALS = '/kzen/auto-ritualize-goals',
+    DESTROY_DATA_URL = '/kzen/destroy-data',
     LOGIN = '/kzen/login',
     REGISTER = '/kzen/register',
     RESTORE = '/kzen/restore',
