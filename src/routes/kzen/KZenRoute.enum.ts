@@ -1,4 +1,6 @@
 export enum KZEN_ROUTE_ENUM {
+    GOAL_SLIDE_IMAGE_UPLOAD = '/kzen/goal-slide-image-upload',
+    GOAL_SLIDE_IMAGE_DELETE = '/kzen/goal-slide-image-delete',
     PROFILE_IMAGE_UPLOAD = '/kzen/profile-image-upload',
     PROFILE_IMAGE_DELETE = '/kzen/profile-image-delete',
     SPRINT_IMAGE_UPLOAD = '/kzen/sprint-image-upload',
