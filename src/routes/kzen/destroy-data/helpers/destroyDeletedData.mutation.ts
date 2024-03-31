@@ -8,7 +8,6 @@ export const destroyDeletedDataMutation = async () => {
         if (!client) throw new Error('generate client error')
 
         const lte = subDays(new Date(Date.now()), 30)
-
         const mutation = gql`
             mutation destroyDeletedDataMutation($lte: timestamptz) {
                 delete_goals(where: { deleted_at: { _lte: $lte } }) {
@@ -29,7 +28,7 @@ export const destroyDeletedDataMutation = async () => {
 
         return response
     } catch (e) {
-        console.error('updateRitualGoal', e)
+        console.error('destroyDeletedDataMutation', e)
         return
     }
 }

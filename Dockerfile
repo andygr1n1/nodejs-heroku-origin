@@ -14,4 +14,4 @@ RUN  apk --no-cache add --update bash \
 	&& yarn install \
 	&& apk update
 
-CMD yarn nodemon
+CMD yarn watch
