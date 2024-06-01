@@ -1,20 +1,18 @@
 import * as dotenv from 'dotenv'
-
 import express from 'express'
-
-import { auth, checkJwt } from './utils/auth.js'
-import { useAddons, useErrorHandling } from './addons/addons.js'
 import request from 'request'
-import { itLoginRoute } from './routes/it-notebook/login-user/login.it.route.js'
-import { itRegisterRoute } from './routes/it-notebook/register-user/register.it.route.js'
-import { kZenAutoRitualizeGoal } from './routes/kzen/auto-ritualize-goals/kZenAutoRitualizeGoal.route.js'
-import { kZenLogin } from './routes/kzen/login/kzenLogin.js'
-import { kzenRegister } from './routes/kzen/register/kzenRegister.js'
-import { kzenRestore } from './routes/kzen/restore/kzenRestore.js'
-import { kZenDeleteImageFromServer } from './routes/kzen/delete-image-from-server/kZenDeleteImageFromServer.js'
-import { KZEN_ROUTE_ENUM } from './routes/kzen/KZenRoute.enum.js'
-import { kZenUploadImageToServer } from './routes/kzen/upload-image-to-server/kZenUploadImageToServer.js'
-import { kZenDestroyData } from './routes/kzen/destroy-data/kZenDestroyData.js'
+
+import { useAddons, useErrorHandling } from './addons/addons'
+import { kZenAutoRitualizeGoal } from './routes/kzen/auto-ritualize-goals/kZenAutoRitualizeGoal.route'
+import { kZenDeleteImageFromServer } from './routes/kzen/delete-image-from-server/kZenDeleteImageFromServer'
+import { kZenDestroyData } from './routes/kzen/destroy-data/kZenDestroyData'
+import { KZEN_ROUTE_ENUM } from './routes/kzen/KZenRoute.enum'
+import { kZenLogin } from './routes/kzen/login/kzenLogin'
+import { kzenLoginGoogle } from './routes/kzen/login-google/kzenLoginGoogle'
+import { kzenRegister } from './routes/kzen/register/kzenRegister'
+import { kzenRestore } from './routes/kzen/restore/kzenRestore'
+import { kZenUploadImageToServer } from './routes/kzen/upload-image-to-server/kZenUploadImageToServer'
+import { auth, checkJwtBySecretKey } from './utilities/auth'
 
 /* configs */
 dotenv.config()
@@ -36,17 +34,10 @@ const app = express()
 
 useAddons(app)
 
-// it --- it --- it --- it ---it --- it --- it --- it
-// it-register
-itRegisterRoute(app)
-
-// it-login
-itLoginRoute(app)
-
 // kzen --- kzen --- kzen --- kzen ---kzen --- kzen --- kzen --- kzen
-
-kZenLogin(app)
 kzenRegister(app)
+kZenLogin(app)
+kzenLoginGoogle(app)
 kzenRestore(app)
 
 // kzen upload/remove profile image
@@ -70,7 +61,7 @@ kZenDestroyData(app)
 app.post('/articles', auth, (req, res) => res.send(req.body))
 
 app.get('/articles', auth, (req, res) => res.send('articles!'))
-app.get('/authorized', checkJwt, (req, res) => res.send('Secured Resource'))
+app.get('/authorized', checkJwtBySecretKey, (req, res) => res.send('Secured Resource'))
 
 app.get('/', (req, res) => {
     // console.info('req', req)

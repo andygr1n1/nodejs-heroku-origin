@@ -1,6 +1,6 @@
-import { gql } from 'graphql-request'
-import { generateClient } from '../../../../api/client.js'
+import { generateClient } from '@/api/client'
 import { subDays } from 'date-fns'
+import { gql } from 'graphql-request'
 
 export const destroyDeletedDataMutation = async () => {
     try {

@@ -1,28 +1,31 @@
+import { generateClient } from '@/api/client'
 import { gql } from 'graphql-request'
-import { generateClient } from '../../../../api/client.js'
 
 interface ILoginRes {
     id: string
+    email: string
+    password: string
 }
 
-export const fetchLoginUserData = async (email: string, password: string): Promise<string | undefined> => {
+export const getPasswordByEmail = async (email: string): Promise<ILoginRes | undefined> => {
     try {
         const client = generateClient()
-
         if (!client) throw new Error('generate client error')
 
         const query = gql`
-            query HeroLogin($email: String, $password: String) {
-                heroes(where: { email: { _eq: $email }, password: { _eq: $password } }) {
+            query HeroLogin($email: String) {
+                heroes(where: { email: { _eq: $email } }) {
                     id
+                    email
+                    password
                 }
             }
         `
 
-        const response: { heroes: ILoginRes[] } = await client.request(query, { email, password })
-        return response?.heroes[0]?.id
+        const response: { heroes: ILoginRes[] } = await client.request(query, { email })
+        return response?.heroes[0]
     } catch (e) {
-        console.error('fetchLoginUserData error:', e)
+        console.error('getPasswordByEmail error:', e)
         return
     }
 }

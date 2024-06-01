@@ -1,7 +1,8 @@
+import { auth } from '@/utilities/auth'
 import type { Express } from 'express'
-import { KZEN_ROUTE_ENUM } from '../KZenRoute.enum.js'
 import fetch from 'node-fetch'
-import { auth } from '../../../utils/auth.js'
+
+import type { KZEN_ROUTE_ENUM } from '../KZenRoute.enum'
 
 export const kZenDeleteImageFromServer = (app: Express, route: KZEN_ROUTE_ENUM, folder: string) => {
     app.post(route, auth, async function (req, res) {

@@ -1,5 +1,5 @@
+import { generateClient } from '@/api/client'
 import { gql } from 'graphql-request'
-import { generateClient } from '../../../../api/client.js'
 
 export const deleteRestoreCode = async (code: string) => {
     const client = generateClient()

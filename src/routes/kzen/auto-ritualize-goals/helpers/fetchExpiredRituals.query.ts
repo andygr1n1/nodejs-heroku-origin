@@ -1,6 +1,7 @@
+import { generateClient } from '@/api/client'
 import { gql } from 'graphql-request'
-import { generateClient } from '../../../../api/client.js'
-import { RitualGoalType } from './autoRitualizeGoals.enums'
+
+import type { RitualGoalType } from './autoRitualizeGoals.enums'
 
 export const fetchExpiredRitualsQuery = async (): Promise<RitualGoalType[] | undefined> => {
     try {

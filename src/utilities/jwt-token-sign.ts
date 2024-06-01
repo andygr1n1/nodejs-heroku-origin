@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+
 import type { User } from '../xata'
 
 export const getJwtTokenSign = (user: User): string => {

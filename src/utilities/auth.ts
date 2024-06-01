@@ -1,8 +1,8 @@
+import * as dotenv from 'dotenv'
 import type { NextFunction, Request, Response } from 'express'
 import { expressjwt, type GetVerificationKey } from 'express-jwt'
 import jwksRsa from 'jwks-rsa'
 
-import * as dotenv from 'dotenv'
 // import { getJwtTokenSign } from './jwt-token-sign.js'
 /* configs */
 dotenv.config()

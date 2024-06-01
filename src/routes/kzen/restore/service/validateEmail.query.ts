@@ -1,5 +1,5 @@
+import { generateClient } from '@/api/client'
 import { gql } from 'graphql-request'
-import { generateClient } from '../../../../api/client.js'
 
 interface IValidateEmailRes {
     email: string

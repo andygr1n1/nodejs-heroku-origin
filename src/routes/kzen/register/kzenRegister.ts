@@ -1,32 +1,32 @@
-import type { Express } from 'express'
-import { KZEN_ROUTE_ENUM } from '../KZenRoute.enum.js'
-import { auth } from '../../../utils/auth.js'
-import { insertNewUser } from './service/insertNewUser.query.js'
-import { zonedTimeToUtc, format } from 'date-fns-tz'
+import { buildTimeStamp } from '@/utilities'
+import { auth } from '@/utilities/auth'
+import type { Express, Response, Request } from 'express'
 
-export interface IKzenRegisterReqBody {
-    email: string
-    password: string
-    name: string
-}
+import { isUserRegistered, registerNewUser } from './helpers'
+import { handleErrors } from './helpers/handleErrors'
+import { saveRefreshToken } from './helpers/saveRefreshToken'
+import { sendActivationEmail } from './helpers/sendActivationEmail'
+import { setupHttpCookie } from './helpers/setupHttpCookie'
+import { RegisterStatus } from './types'
+import { KZEN_ROUTE_ENUM } from '../KZenRoute.enum'
 
 export const kzenRegister = (app: Express) => {
-    app.post(KZEN_ROUTE_ENUM.REGISTER, auth, async function (req, res) {
-        // time log
-        const timeZone = 'Europe/Lisbon'
-        const zonedDate = zonedTimeToUtc(new Date(Date.now()), timeZone)
-        const pattern = "dd.MM.yyyy HH:mm:ss.SSS 'GMT' XXX (z)"
-        //
+    app.post(KZEN_ROUTE_ENUM.REGISTER, auth, async function (req: Request, res: Response) {
         try {
-            const reqBody: IKzenRegisterReqBody = req.body
-            const userId = await insertNewUser(reqBody)
-            if (!userId) throw new Error(`Registration Failed on ${reqBody}`)
-
-            console.info('new user id:::', userId, format(zonedDate, pattern, { timeZone: 'Europe/Lisbon' }))
-            res.status(200).send({ user_id: userId, remember: false })
-        } catch (e) {
-            console.info('kzenRegister:::', e, format(zonedDate, pattern, { timeZone: 'Europe/Lisbon' }))
-            return res.status(401).send('unauthorized')
+            await isUserRegistered(req)
+            const registeredUser = await registerNewUser(req)
+            const tokens = await saveRefreshToken(registeredUser)
+            await sendActivationEmail({
+                name: registeredUser.name,
+                email: registeredUser.email,
+                activationLink: `${process.env.KZEN_USER_ACTIVATION_PATH}?activation=${registeredUser.password}`,
+            })
+            console.info('registration success', req.body, buildTimeStamp())
+            /* *** */
+            setupHttpCookie(res, tokens)
+            res.status(200).send({ status: RegisterStatus.success, jwt: tokens.refreshToken })
+        } catch (error) {
+            return handleErrors(error, res)
         }
     })
 }

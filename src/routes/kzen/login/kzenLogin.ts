@@ -1,8 +1,10 @@
-import type { Express } from 'express'
-import { KZEN_ROUTE_ENUM } from '../KZenRoute.enum.js'
-import { auth } from '../../../utils/auth.js'
-import { fetchLoginUserData } from './service/fetchLoginUserData.query.js'
+import { auth } from '@/utilities/auth'
+import bcrypt from 'bcryptjs'
 import { zonedTimeToUtc, format } from 'date-fns-tz'
+import type { Express } from 'express'
+
+import { getPasswordByEmail } from './service/fetchLoginUserData.query'
+import { KZEN_ROUTE_ENUM } from '../KZenRoute.enum'
 
 interface IKzenLoginReqBody {
     email: string
@@ -17,8 +19,10 @@ export const kZenLogin = (app: Express) => {
         const zonedDate = zonedTimeToUtc(new Date(Date.now()), timeZone)
         const pattern = "dd.MM.yyyy HH:mm:ss.SSS 'GMT' XXX (z)"
         //
+
         try {
             const reqBody: IKzenLoginReqBody = req.body
+
             const userId = await validateUser(reqBody.email, reqBody.password)
             if (!userId) throw new Error('Validation Failed')
 
@@ -31,6 +35,10 @@ export const kZenLogin = (app: Express) => {
     })
 }
 
-const validateUser = async (email: string, password: string) => {
-    return await fetchLoginUserData(email, password)
+const validateUser = async (email: string, password: string): Promise<string | undefined> => {
+    const data = await getPasswordByEmail(email)
+    if (!data) return
+    // Compare the entered password with the stored hash
+    const isMatch = bcrypt.compareSync(password, data?.password)
+    return isMatch ? data.id : undefined
 }

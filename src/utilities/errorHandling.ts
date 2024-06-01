@@ -12,15 +12,14 @@ export const errorHandling = (error: Error, _req: Request, res: Response, next: 
     }
 }
 
-export const createError = (status: number, message: string, requestId = '-1') => {
-    return {
-        status,
-        errors: [
-            {
-                message,
-                status,
-            },
-        ],
-        requestId,
+export class CustomError extends Error {
+    type: string
+    errorCode: number
+
+    constructor(message: string, type: string, errorCode: number) {
+        super(message)
+        this.name = this.constructor.name
+        this.type = type
+        this.errorCode = errorCode
     }
 }

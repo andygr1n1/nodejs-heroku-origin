@@ -1,11 +1,12 @@
-import type { Express } from 'express'
-import { KZEN_ROUTE_ENUM } from '../KZenRoute.enum.js'
-import { auth } from '../../../utils/auth.js'
+import { sendEmail } from '@/services/mail-service/nodemailerService'
+import { auth } from '@/utilities/auth'
 import { zonedTimeToUtc, format } from 'date-fns-tz'
-import { sendEmail } from '../../../nodemailer/nodemailerService.js'
-import { validateEmail } from './service/validateEmail.query.js'
-import { insertRestoreCode } from './service/insertRestoreCode.mutation.js'
-import { deleteRestoreCode } from './service/deleteRestoreCode.mutation.js'
+import type { Express } from 'express'
+
+import { deleteRestoreCode } from './service/deleteRestoreCode.mutation'
+import { insertRestoreCode } from './service/insertRestoreCode.mutation'
+import { validateEmail } from './service/validateEmail.query'
+import { KZEN_ROUTE_ENUM } from '../KZenRoute.enum'
 
 interface IKzenRestoreReqBody {
     email: string

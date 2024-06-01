@@ -1,5 +1,5 @@
+import { generateClient } from '@/api/client'
 import { gql } from 'graphql-request'
-import { generateClient } from '../../../../api/client.js'
 
 export const insertRestoreCode = async (email: string): Promise<string | undefined> => {
     const client = generateClient()

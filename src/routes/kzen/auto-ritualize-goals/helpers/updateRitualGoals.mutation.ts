@@ -1,6 +1,7 @@
+import { generateClient } from '@/api/client'
 import { gql } from 'graphql-request'
-import { generateClient } from '../../../../api/client.js'
-import { UpdatedRitualGoalType } from './autoRitualizeGoals.enums.js'
+
+import type { UpdatedRitualGoalType } from './autoRitualizeGoals.enums'
 
 export const updateRitualGoal = async (goal: UpdatedRitualGoalType) => {
     try {

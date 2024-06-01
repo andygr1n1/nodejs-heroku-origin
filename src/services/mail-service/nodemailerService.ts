@@ -1,14 +1,10 @@
 // https://miracleio.me/snippets/use-gmail-with-nodemailer/
 import nodemailer from 'nodemailer'
 
+import { createTransporter } from './helpers/createTransporter'
+
 export const sendEmail = async (to: string, link: string) => {
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: process.env.NODEMAILER_EMAIL,
-            pass: process.env.VITE_EMAIL_SECURITY_CODE,
-        },
-    })
+    const transporter = createTransporter()
 
     const info = await transporter.sendMail({
         from: process.env.NODEMAILER_EMAIL,

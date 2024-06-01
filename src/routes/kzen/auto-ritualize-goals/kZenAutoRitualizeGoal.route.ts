@@ -1,5 +1,7 @@
 import type { Express } from 'express'
-import { KZEN_ROUTE_ENUM } from '../KZenRoute.enum.js'
+
+import { KZEN_ROUTE_ENUM } from '../KZenRoute.enum'
+
 // import { fetchExpiredRitualsQuery } from './helpers/fetchExpiredRituals.query.js'
 // import { generateNewRitualCircle } from './helpers/generateNewRitualCircle.helper.js'
 // import { updateRitualGoal } from './helpers/updateRitualGoals.mutation.js'
