@@ -11,7 +11,6 @@ export const generateClient = (): GraphQLClient | undefined => {
 
         return client
     } catch (e) {
-        alert(e)
         console.error(e)
     }
 }

@@ -10,6 +10,8 @@ import { KZEN_ROUTE_ENUM } from './routes/kzen/KZenRoute.enum'
 import { kZenLogin } from './routes/kzen/login/kzenLogin'
 import { kzenLoginGoogle } from './routes/kzen/login-google/kzenLoginGoogle'
 import { kzenRegister } from './routes/kzen/register/kzenRegister'
+import { kzenRegisterResendActivationLink } from './routes/kzen/register-resend-activation-link/kzenRegisterResendActivationLink'
+import { kzenValidateActivationCode } from './routes/kzen/register-validate-activation-code/kzenValidateActivationCode'
 import { kzenRestore } from './routes/kzen/restore/kzenRestore'
 import { kZenUploadImageToServer } from './routes/kzen/upload-image-to-server/kZenUploadImageToServer'
 import { auth, checkJwtBySecretKey } from './utilities/auth'
@@ -36,6 +38,8 @@ useAddons(app)
 
 // kzen --- kzen --- kzen --- kzen ---kzen --- kzen --- kzen --- kzen
 kzenRegister(app)
+kzenRegisterResendActivationLink(app)
+kzenValidateActivationCode(app)
 kZenLogin(app)
 kzenLoginGoogle(app)
 kzenRestore(app)

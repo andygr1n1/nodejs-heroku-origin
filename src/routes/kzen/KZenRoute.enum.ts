@@ -10,5 +10,7 @@ export enum KZEN_ROUTE_ENUM {
     LOGIN = '/kzen/login',
     LOGIN_GOOGLE = '/kzen/google-sign-in',
     REGISTER = '/kzen/register',
+    REGISTER_RESEND_ACTIVATION_LINK = '/kzen/register/resend-activation-link',
+    REGISTER_VALIDATE_ACTIVATION_CODE = '/kzen/register/validate-activation-code',
     RESTORE = '/kzen/restore',
 }

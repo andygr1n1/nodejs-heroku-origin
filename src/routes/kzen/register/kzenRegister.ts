@@ -1,4 +1,3 @@
-import { buildTimeStamp } from '@/utilities'
 import { auth } from '@/utilities/auth'
 import type { Express, Response, Request } from 'express'
 
@@ -16,12 +15,7 @@ export const kzenRegister = (app: Express) => {
             await isUserRegistered(req)
             const registeredUser = await registerNewUser(req)
             const tokens = await saveRefreshToken(registeredUser)
-            await sendActivationEmail({
-                name: registeredUser.name,
-                email: registeredUser.email,
-                activationLink: `${process.env.KZEN_USER_ACTIVATION_PATH}?activation=${registeredUser.password}`,
-            })
-            console.info('registration success', req.body, buildTimeStamp())
+            await sendActivationEmail(registeredUser)
             /* *** */
             setupHttpCookie(res, tokens)
             res.status(200).send({ status: RegisterStatus.success, jwt: tokens.refreshToken })

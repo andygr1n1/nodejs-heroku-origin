@@ -2,8 +2,11 @@ import nodemailer from 'nodemailer'
 
 import { createTransporter } from '../../../../services/mail-service/helpers/createTransporter'
 import { deletePreregisteredUser } from '../service/deletePreregisteredUser.query'
+import type { IKzenRegisterRequestData } from '../types'
 
-export const sendActivationEmail = async (props: { name: string; email: string; activationLink: string }) => {
+export const sendActivationEmail = async (props: IKzenRegisterRequestData) => {
+    const activationLink = `${process.env.KZEN_USER_ACTIVATION_PATH}?activation=${props.password}`
+
     try {
         const transporter = createTransporter()
         console.log('process.env.NODEMAILER_EMAIL', process.env.NODEMAILER_EMAIL)
@@ -90,7 +93,7 @@ export const sendActivationEmail = async (props: { name: string; email: string; 
                         <p>Dear ${props.name},</p>
                         <p>thank you for registering with KZen. We are excited to have you on board.</p>
                         <p>Your account has been successfully created, and you just need to confirm your email.</p>
-                        <p>Click on <a href="${props.activationLink}" target="_blank">activation link</a> and start exploring the amazing features we offer.</p>
+                        <p>Click on <a href="${activationLink}" target="_blank">activation link</a> and start exploring the amazing features we offer.</p>
                         <p>If you have any questions or need assistance, feel free to reach out to our support team.</p>
                         <p>Best regards,</p>
                         <p>the KZen Team</p>
