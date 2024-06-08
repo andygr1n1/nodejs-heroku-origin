@@ -1,4 +1,4 @@
-import { generateClient } from '@/api/client'
+import { generateClient } from '@/utilities'
 import { gql } from 'graphql-request'
 
 import type { INewUser } from '../types'
@@ -12,9 +12,6 @@ export const deletePreregisteredUser = async (email: string) => {
         const mutation = gql`
             mutation deletePreregisteredUser($email: String) {
                 delete_heroes(where: { email: { _eq: $email } }) {
-                    affected_rows
-                }
-                delete_restore_codes(where: { email: { _eq: $email } }) {
                     affected_rows
                 }
             }

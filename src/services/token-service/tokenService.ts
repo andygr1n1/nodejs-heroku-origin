@@ -1,4 +1,4 @@
-import { CustomError } from '@/utilities/errorHandling'
+import { Zerr } from '@/middleware'
 import jwt from 'jsonwebtoken'
 import { z } from 'zod'
 
@@ -16,7 +16,7 @@ export const generateTokens = (payload: IPayload): ITokens => {
     const jwtRefreshSecret = process.env.JWT_REFRESH_SECRET
 
     if (!jwtAccessSecret || !jwtRefreshSecret) {
-        throw new CustomError('token protection missed uniq keys', 'missed keys', 401)
+        throw Zerr({ message: 'token protection missed uniq keys', path: ['generateTokens'], status: 401 })
     }
 
     const accessToken = jwt.sign(payload, jwtAccessSecret, { expiresIn: '30m' })

@@ -21,3 +21,7 @@ export const kzenRegisterSchema = z.object({
 export type IKzenRegisterRequestData = z.infer<typeof kzenRegisterSchema>
 
 export type INewUser = { id: string; email: string; created_at: string; password: string; name: string }
+export type IUserAndToken = INewUser & {
+    tokens: { token: string; session_id: string }[]
+    role: string
+}

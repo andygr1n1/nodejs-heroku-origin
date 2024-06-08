@@ -39,7 +39,6 @@
         "@types/node": "^20.12.2",
         "@types/node-fetch": "2",
         "@types/nodemailer": "^6.4.8",
-        "@types/request": "^2.48.8",
         "@typescript-eslint/eslint-plugin": "^7.1.0",
         "@typescript-eslint/parser": "^7.1.0",
         "eslint": "^8.57.0",
@@ -56,14 +55,12 @@
     },
     "dependencies": {
         "@types/cookie-parser": "^1.4.7",
-        "@xata.io/client": "^0.21.4",
         "app-root-path": "^3.1.0",
         "bcryptjs": "^2.4.3",
         "body-parser": "^1.20.1",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
         "date-fns": "^2.30.0",
-        "date-fns-tz": "^2.0.0",
         "dotenv": "^16.0.3",
         "express": "^4.18.2",
         "express-async-errors": "^3.1.1",
@@ -78,7 +75,6 @@
         "jwks-rsa": "^3.0.0",
         "node-fetch": "2",
         "nodemailer": "^6.9.3",
-        "request": "^2.88.2",
         "tsx": "^4.7.1",
         "zod": "^3.23.8"
     }

@@ -1,6 +1,5 @@
-import { auth } from '@/utilities/auth'
+import { auth } from '@/middleware'
 import bcrypt from 'bcryptjs'
-import { zonedTimeToUtc, format } from 'date-fns-tz'
 import type { Express } from 'express'
 
 import { getPasswordByEmail } from './service/fetchLoginUserData.query'
@@ -15,9 +14,9 @@ interface IKzenLoginReqBody {
 export const kZenLogin = (app: Express) => {
     app.post(KZEN_ROUTE_ENUM.LOGIN, auth, async function (req, res) {
         // time log
-        const timeZone = 'Europe/Lisbon'
-        const zonedDate = zonedTimeToUtc(new Date(Date.now()), timeZone)
-        const pattern = "dd.MM.yyyy HH:mm:ss.SSS 'GMT' XXX (z)"
+        // const timeZone = 'Europe/Lisbon'
+        // const zonedDate = zonedTimeToUtc(new Date(Date.now()), timeZone)
+        // const pattern = "dd.MM.yyyy HH:mm:ss.SSS 'GMT' XXX (z)"
         //
 
         try {
@@ -26,10 +25,10 @@ export const kZenLogin = (app: Express) => {
             const userId = await validateUser(reqBody.email, reqBody.password)
             if (!userId) throw new Error('Validation Failed')
 
-            console.info('userLoginId:::', userId, format(zonedDate, pattern, { timeZone: 'Europe/Lisbon' }))
+            // console.info('userLoginId:::', userId, format(zonedDate, pattern, { timeZone: 'Europe/Lisbon' }))
             res.status(200).send({ user_id: userId, remember: reqBody.remember })
         } catch (e) {
-            console.info('userLoginId:::', e, format(zonedDate, pattern, { timeZone: 'Europe/Lisbon' }))
+            // console.info('userLoginId:::', e, format(zonedDate, pattern, { timeZone: 'Europe/Lisbon' }))
             return res.status(401).send('unauthorized')
         }
     })

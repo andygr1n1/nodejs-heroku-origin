@@ -1,6 +1,0 @@
-{
-  "databaseURL": "https://Andrew-s-workspace-c59hq8.us-east-1.xata.sh/db/it-notebook-db",
-  "codegen": {
-    "output": "src/xata.ts"
-  }
-}

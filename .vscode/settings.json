@@ -11,6 +11,6 @@
         "precommit",
         "timestamptz",
         "tsnode",
-        "xata"
+        "Zerr"
     ]
 }

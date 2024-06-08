@@ -1,4 +1,4 @@
-import { auth } from '@/utilities/auth'
+import { auth } from '@/middleware'
 import { format } from 'date-fns'
 import type { Express } from 'express'
 import { OAuth2Client } from 'google-auth-library'

@@ -1,4 +1,4 @@
-import { generateClient } from '@/api/client'
+import { generateClient } from '@/utilities'
 import { gql } from 'graphql-request'
 
 import type { IKzenRegisterRequestData, INewUser } from '../types'
@@ -21,12 +21,6 @@ export const insertNewUser = async (newUser: IKzenRegisterRequestData): Promise<
                     created_at
                     password
                     name
-                }
-                insert_restore_codes_one(object: { email: $email, secret: $password, type: activation }) {
-                    secret
-                    email
-                    id
-                    type
                 }
             }
         `

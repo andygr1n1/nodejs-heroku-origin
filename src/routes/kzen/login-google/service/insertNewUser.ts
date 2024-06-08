@@ -1,7 +1,7 @@
 import { gql } from 'graphql-request'
 import { z } from 'zod'
 
-import { generateClient } from '../../../../api/client'
+import { generateClient } from '../../../../utilities/graphqlClient'
 import { generateNewPassword } from '../helpers/generateNewPassword'
 
 // Define the schema for the mutation response

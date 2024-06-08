@@ -1,4 +1,4 @@
-import { generateClient } from '@/api/client'
+import { generateClient } from '@/utilities'
 import { gql } from 'graphql-request'
 
 export const deleteRestoreCode = async (code: string) => {

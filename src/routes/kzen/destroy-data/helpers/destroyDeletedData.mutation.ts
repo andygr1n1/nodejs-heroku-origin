@@ -1,4 +1,4 @@
-import { generateClient } from '@/api/client'
+import { generateClient } from '@/utilities'
 import { subDays } from 'date-fns'
 import { gql } from 'graphql-request'
 

@@ -1,4 +1,4 @@
-import { auth } from '@/utilities/auth'
+import { auth } from '@/middleware'
 import crypto from 'crypto'
 import type { Express } from 'express'
 import fetch from 'node-fetch'

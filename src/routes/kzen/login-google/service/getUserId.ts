@@ -1,7 +1,7 @@
 import { gql } from 'graphql-request'
 import { z } from 'zod'
 
-import { generateClient } from '../../../../api/client'
+import { generateClient } from '../../../../utilities/graphqlClient'
 
 // Define the schema for the response
 const ILoginResSchema = z.object({
