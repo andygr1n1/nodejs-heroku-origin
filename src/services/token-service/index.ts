@@ -4,7 +4,11 @@ import jwt from 'jsonwebtoken'
 import { z } from 'zod'
 
 // Define the payload
-const payloadSchema = z.record(z.string())
+const payloadSchema = z.object({
+    id: z.string(),
+    role: z.string(),
+    'allowed-roles': z.array(z.string()),
+})
 type IPayload = z.infer<typeof payloadSchema>
 
 export const generateTokens = (payload: IPayload): ITokensSchema => {

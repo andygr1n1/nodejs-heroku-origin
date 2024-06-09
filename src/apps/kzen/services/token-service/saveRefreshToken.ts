@@ -5,7 +5,11 @@ import type { IKzenUser } from '../../utilities/types'
 import { mutation_insertUserToken } from '../graphql-service'
 
 export const saveRefreshToken = async (registeredUser: IKzenUser) => {
-    const tokens = generateTokens({ id: registeredUser.id, role: registeredUser.role })
+    const tokens = generateTokens({
+        id: registeredUser.id,
+        role: registeredUser.role,
+        'allowed-roles': ['hero', 'superHero', 'guest'],
+    })
 
     const result = await mutation_insertUserToken(registeredUser.id, tokens.refreshToken)
 
