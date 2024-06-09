@@ -30,7 +30,7 @@ export const mutation_activateUser = async (password: string): Promise<IKzenUser
         return response?.update_heroes?.returning?.[0]
     } catch (e) {
         throw Zerr({
-            message: `mutation_activateUser: ${e}`,
+            message: `Server is unavailable: ${e}`,
             status: 422,
             path: ['mutation_ActivateUser'],
         })

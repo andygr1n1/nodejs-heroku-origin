@@ -21,6 +21,6 @@ export const query_userDataByEmail = async (email: string): Promise<IKzenUserReg
         const response: { heroes: IKzenUserRegisterSchema[] } = await client.request(query, { email })
         return response?.heroes?.[0]
     } catch (e) {
-        throw Zerr({ message: 'Server is unavailable', status: 422, path: ['query_userDataByEmail'] })
+        throw Zerr({ message: `Server is unavailable: ${e}`, status: 422, path: ['query_userDataByEmail'] })
     }
 }

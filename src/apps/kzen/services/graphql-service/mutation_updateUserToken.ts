@@ -31,6 +31,6 @@ export const mutation_updateUserToken = async (
         )
         return response?.update_heroes_tokens?.returning?.[0]
     } catch (e) {
-        throw Zerr({ message: `mutation_updateUserToken: ${e}`, status: 422, path: ['mutation_UpdateRefreshToken'] })
+        throw Zerr({ message: `Server is unavailable: ${e}`, status: 422, path: ['mutation_UpdateRefreshToken'] })
     }
 }
