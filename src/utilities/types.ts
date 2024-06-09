@@ -1,8 +1,10 @@
 import { z } from 'zod'
 
-export type ITokens = { accessToken: string; refreshToken: string }
+export const tokenSchema = z.object({ accessToken: z.string().min(1), refreshToken: z.string().min(1) })
+export type ITokensSchema = z.infer<typeof tokenSchema>
 
-// Define the schema for the environment variable
+/*  */
+
 export const envSchema = z.object({
     X_API_KEY: z.string().min(1, 'X_API_KEY HAS BEEN BROKEN'),
     PORT: z.string().optional(),
@@ -18,17 +20,8 @@ export const envSchema = z.object({
     JWT_REFRESH_SECRET: z.string().min(1, 'JWT_REFRESH_SECRET HAS BEEN BROKEN'),
 })
 
-export type ValueOf<T> = T[keyof T]
+// export type ValueOf<T> = T[keyof T]
 
-export const payloadSchema = z.record(z.string())
+// export const payloadSchema = z.record(z.string())
+
 // export type IPayload = z.infer<typeof payloadSchema>
-
-export const emailSchema = z.object({
-    email: z.string().email().min(1),
-})
-
-// export type IEmail = z.infer<typeof emailSchema>
-
-export const activationCodeSchema = z.object({
-    activationCode: z.string().min(1),
-})

@@ -1,5 +1,5 @@
 import { Zerr } from '@/middleware'
-import type { ITokens } from '@/utilities'
+import type { ITokensSchema } from '@/utilities'
 import jwt from 'jsonwebtoken'
 import { z } from 'zod'
 
@@ -7,7 +7,7 @@ import { z } from 'zod'
 const payloadSchema = z.record(z.string())
 type IPayload = z.infer<typeof payloadSchema>
 
-export const generateTokens = (payload: IPayload): ITokens => {
+export const generateTokens = (payload: IPayload): ITokensSchema => {
     // Validate the payload
     payloadSchema.safeParse(payload)
 

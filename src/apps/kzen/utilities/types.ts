@@ -44,3 +44,16 @@ const updateUserTokenSchema = z.object({
 })
 
 export type IUpdateUserTokenSchema = z.infer<typeof updateUserTokenSchema>
+
+/*  */
+export const emailSchema = z.object({
+    email: z.string().email().min(1),
+})
+
+export type IEmail = z.infer<typeof emailSchema>
+
+/*  */
+
+export const activationCodeSchema = z.object({
+    activationCode: z.string().min(1),
+})
