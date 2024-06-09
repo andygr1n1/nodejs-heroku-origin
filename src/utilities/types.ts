@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+export type ITokens = { accessToken: string; refreshToken: string }
+
 // Define the schema for the environment variable
 export const envSchema = z.object({
     X_API_KEY: z.string().min(1, 'X_API_KEY HAS BEEN BROKEN'),

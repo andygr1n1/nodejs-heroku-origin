@@ -1,4 +1,3 @@
-import { errorHandling } from '@/middleware'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
@@ -13,8 +12,4 @@ export const useAddons = (app: Express) => {
     app.use(cors(/* { credentials: true } */))
     app.use(fileUpload())
     app.use('/public', express.static('public'))
-}
-
-export const useErrorHandler = (app: Express) => {
-    app.use(errorHandling)
 }
