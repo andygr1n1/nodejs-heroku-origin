@@ -8,9 +8,11 @@ export enum KZEN_ROUTE_ENUM {
     AUTO_RITUALIZE_GOALS = '/kzen/auto-ritualize-goals',
     DESTROY_DATA_URL = '/kzen/destroy-data',
     LOGIN = '/kzen/login',
+    LOGIN_REFRESH = '/kzen/login/refresh',
     LOGIN_GOOGLE = '/kzen/google-sign-in',
     REGISTER = '/kzen/register',
     REGISTER_RESEND_ACTIVATION_LINK = '/kzen/register/resend-activation-link',
     REGISTER_VALIDATE_ACTIVATION_CODE = '/kzen/register/validate-activation-code',
     RESTORE = '/kzen/restore',
+    NEW_PASSWORD = '/kzen/new-password',
 }

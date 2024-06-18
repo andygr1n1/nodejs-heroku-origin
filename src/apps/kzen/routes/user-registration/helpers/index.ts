@@ -1,2 +1,2 @@
 export * from './isRegistered'
-export * from './registerUser'
+export * from './userRegister'

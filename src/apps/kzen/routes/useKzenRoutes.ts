@@ -3,14 +3,16 @@ import type { Express } from 'express'
 import { kZenAutoRitualizeGoal } from './auto-ritualize-goals/kZenAutoRitualizeGoal.route'
 import { kZenDeleteImageFromServer } from './delete-image-from-server/kZenDeleteImageFromServer'
 import { kZenDestroyData } from './destroy-data/kZenDestroyData'
-import { kZenLogin } from './login/kzenLogin'
-import { kzenLoginGoogle } from './login-google/kzenLoginGoogle'
-import { kzenRestore } from './restore/kzenRestore'
 import { kZenUploadImageToServer } from './upload-image-to-server/kZenUploadImageToServer'
 import { userActivation } from './user-activation'
+import { userLogin } from './user-login'
+import { kzenLoginGoogle } from './user-login-google/kzenLoginGoogle'
+import { userLoginRefresh } from './user-login-refresh'
+import { userNewPassword } from './user-new-password'
 import { userRegistration } from './user-registration'
 import { userResendActivationLink } from './user-resend-activation-link'
-import { KZEN_ROUTE_ENUM } from '../utilities/enums'
+import { userRestore } from './user-restore'
+import { KZEN_ROUTE_ENUM } from '../services/enums'
 
 export const useKzenRoutes = (app: Express) => {
     /* routes */
@@ -20,11 +22,15 @@ export const useKzenRoutes = (app: Express) => {
 
     userActivation(app)
 
-    kZenLogin(app)
+    userLogin(app)
+
+    userLoginRefresh(app)
 
     kzenLoginGoogle(app)
 
-    kzenRestore(app)
+    userRestore(app)
+
+    userNewPassword(app)
 
     // kzen upload/remove profile image
     kZenUploadImageToServer(app, KZEN_ROUTE_ENUM.PROFILE_IMAGE_UPLOAD, 'avatars')

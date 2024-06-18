@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 /*  */
 
-export const ServerStatusSchema = z.enum(['success', 'registered', 'failed'])
+export const ServerStatusSchema = z.enum(['success', 'registered', 'failed', 'unauthorized'])
 export const ServerStatus = ServerStatusSchema.Values
 export type IServerStatus = z.infer<typeof ServerStatusSchema>
 
@@ -19,12 +19,17 @@ export type IKzenUserRegisterSchema = z.infer<typeof kzenUserRegisterSchema>
 
 export const kzenUserSchema = z.object({
     id: z.string().uuid(),
+    email: z.string(),
+    name: z.string(),
     role: z.string(),
+    password: z.string(),
     tokens: z.array(
-        z.object({
-            token: z.string(),
-            session_id: z.string(),
-        }),
+        z
+            .object({
+                token: z.string(),
+                session_id: z.string(),
+            })
+            .optional(),
     ),
 })
 export type IKzenUser = z.infer<typeof kzenUserSchema>
@@ -36,14 +41,6 @@ const accessKeysSchema = z.object({
 })
 
 export type IAccessKeys = z.infer<typeof accessKeysSchema>
-
-/*  */
-
-const updateUserTokenSchema = z.object({
-    session_id: z.string().min(1),
-})
-
-export type IUpdateUserTokenSchema = z.infer<typeof updateUserTokenSchema>
 
 /*  */
 export const emailSchema = z.object({

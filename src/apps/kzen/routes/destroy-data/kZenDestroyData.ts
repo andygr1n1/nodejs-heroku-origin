@@ -1,7 +1,7 @@
 import type { Express } from 'express'
 
 import { destroyDeletedDataMutation } from './helpers/destroyDeletedData.mutation'
-import { KZEN_ROUTE_ENUM } from '../../utilities/enums'
+import { KZEN_ROUTE_ENUM } from '../../services/enums'
 
 export const kZenDestroyData = (app: Express) => {
     app.post(KZEN_ROUTE_ENUM.DESTROY_DATA_URL, async function (req, res) {

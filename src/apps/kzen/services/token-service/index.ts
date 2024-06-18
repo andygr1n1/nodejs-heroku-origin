@@ -1,2 +1,2 @@
-export * from './saveRefreshToken'
+export * from './resolve-refresh-token/resolveRefreshToken'
 export * from './setupHttpCookie'

@@ -7,9 +7,15 @@ import fileUpload from 'express-fileupload'
 
 export const useAddons = (app: Express) => {
     app.use(express.json())
-    app.use(cookieParser())
     app.use(bodyParser.json())
-    app.use(cors(/* { credentials: true } */))
+    // app.use(cors(/* { credentials: true } */))
+    app.use(
+        cors({
+            credentials: true,
+            origin: process.env.CLIENT_URL,
+        }),
+    )
     app.use(fileUpload())
     app.use('/public', express.static('public'))
+    app.use(cookieParser())
 }

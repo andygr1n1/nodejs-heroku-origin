@@ -1,27 +1,24 @@
-import { mutation_deleteUser } from '@/apps/kzen/services/graphql-service'
 import { Zerr } from '@/middleware'
 import { createTransporter } from '@/services/mail-service'
 
-import type { IKzenUser } from '../types'
+import type { IKzenUser } from '../../../services/types'
 
-export const sendActivationEmail = async (props: IKzenUser) => {
-    const activationLink = `${process.env.KZEN_USER_ACTIVATION_PATH}?activation=${props.password}`
-
+export const sendActivationRestore = async (props: IKzenUser, activationLink: string) => {
     try {
         const transporter = createTransporter()
 
         await transporter.sendMail({
             from: process.env.NODEMAILER_EMAIL,
             to: props.email,
-            subject: 'KZen user registration',
-            text: 'Please confirm registration email',
+            subject: 'KZen user restore',
+            text: 'Please confirm restoration process',
             html: `
             <!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>KZen User Registration Confirmation</title>
+                <title>KZen User Restore Confirmation</title>
                 <style>
                     body {
                         font-family: Arial, sans-serif;
@@ -89,11 +86,11 @@ export const sendActivationEmail = async (props: IKzenUser) => {
                         <h1>Welcome!</h1>
                     </div>
                     <div class="content">
-                        <h2>Registration confirmation</h2>
+                        <h2>Account restore confirmation</h2>
                         <p>Dear ${props.name},</p>
-                        <p>thank you for registering with KZen. We are excited to have you on board.</p>
-                        <p>Your account has been successfully created, and you just need to confirm your email.</p>
-                        <p>Click on <a href="${activationLink}" target="_blank">activation link</a> and start exploring the amazing features we offer.</p>
+                        <p>thank you for being with KZen. We are excited to have you on board.</p>
+                        <p>Your account has been ordered a restoration process, and you just need to confirm your email.</p>
+                        <p>Click on <a href="${activationLink}" target="_blank">activation link</a> and continue restoration process.</p>
                         <p>If you have any questions or need assistance, feel free to reach out to our support team.</p>
                         <p>Best regards,</p>
                         <p>the KZen Team</p>
@@ -107,11 +104,10 @@ export const sendActivationEmail = async (props: IKzenUser) => {
             `,
         })
     } catch (e) {
-        await mutation_deleteUser(props.email)
         throw Zerr({
-            message: 'User registration failed. Email service un unavailable at the moment',
+            message: 'User restore failed. Email service un unavailable at the moment',
             status: 422,
-            path: ['sendActivationEmail'],
+            path: ['sendActivationRestore'],
         })
     }
 }

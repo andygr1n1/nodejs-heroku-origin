@@ -1,12 +1,9 @@
 import { auth, Zerr } from '@/middleware'
 import type { Express, Response, Request } from 'express'
 
+import { KZEN_ROUTE_ENUM } from '../../services/enums'
 import { mutation_activateUser } from '../../services/graphql-service/mutation_activateUser'
-import { saveRefreshToken } from '../../services/token-service'
-import { setupHttpCookie } from '../../services/token-service/setupHttpCookie'
-import { KZEN_ROUTE_ENUM } from '../../utilities/enums'
-import type { IAccessKeys } from '../../utilities/types'
-import { activationCodeSchema, ServerStatus } from '../../utilities/types'
+import { activationCodeSchema, ServerStatus } from '../../services/types'
 
 export const userActivation = (app: Express) => {
     app.post(KZEN_ROUTE_ENUM.REGISTER_VALIDATE_ACTIVATION_CODE, auth, async function (req: Request, res: Response) {
@@ -23,14 +20,7 @@ export const userActivation = (app: Express) => {
             })
         }
 
-        const sessionData = await saveRefreshToken(user)
-
-        const sessionInfo: IAccessKeys = {
-            accessId: sessionData.accessId,
-        }
-
         /* *** */
-        setupHttpCookie(res, sessionData.sessionId)
-        res.status(200).send({ message: ServerStatus.success, sessionInfo })
+        res.status(200).send({ message: ServerStatus.success })
     })
 }

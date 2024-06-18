@@ -1,7 +1,8 @@
 import { Zerr } from '@/middleware'
-import type { ITokensSchema } from '@/utilities'
 import jwt from 'jsonwebtoken'
 import { z } from 'zod'
+
+import type { ITokensSchema } from '../types'
 
 // Define the payload
 const payloadSchema = z.object({
@@ -22,7 +23,7 @@ export const generateTokens = (payload: IPayload): ITokensSchema => {
         throw Zerr({ message: 'Token protection missed uniq keys', path: ['generateTokens'], status: 422 })
     }
 
-    const accessToken = jwt.sign(payload, jwtAccessSecret, { expiresIn: '30m' })
+    const accessToken = jwt.sign(payload, jwtAccessSecret, { expiresIn: '30s' })
     const refreshToken = jwt.sign(payload, jwtRefreshSecret, { expiresIn: '30d' })
 
     return { accessToken, refreshToken }

@@ -1,4 +1,4 @@
-import { kzenUserRegisterSchema } from '@/apps/kzen/utilities/types'
+import { kzenUserRegisterSchema } from '@/apps/kzen/services/types'
 import { Zerr } from '@/middleware'
 import type { Request } from 'express'
 

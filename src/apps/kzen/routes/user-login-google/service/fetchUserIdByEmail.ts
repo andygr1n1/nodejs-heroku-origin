@@ -1,6 +1,6 @@
+import { query_userDataByEmail } from '@/apps/kzen/services/graphql-service/query_userDataByEmail'
 import { z } from 'zod'
 
-import { getUserId } from './getUserId'
 import { insertNewUser } from './insertNewUser'
 
 // Define a Zod schema for email validation
@@ -15,13 +15,13 @@ export const fetchUserIdByEmail = async (email: string): Promise<string | undefi
             throw new Error('Invalid email format')
         }
 
-        let userId = await getUserId(email)
+        const user = await query_userDataByEmail(email)
 
-        if (!userId) {
-            userId = await insertNewUser(email)
+        if (!user?.id) {
+            return await insertNewUser(email)
         }
 
-        return userId
+        return user.id
     } catch (e) {
         console.error('fetchUserIdByEmail error:', e)
         return

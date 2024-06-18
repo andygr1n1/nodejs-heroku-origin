@@ -2,7 +2,7 @@ import { auth } from '@/middleware'
 import type { Express } from 'express'
 import fetch from 'node-fetch'
 
-import type { KZEN_ROUTE_ENUM } from '../../utilities/enums'
+import type { KZEN_ROUTE_ENUM } from '../../services/enums'
 
 export const kZenDeleteImageFromServer = (app: Express, route: KZEN_ROUTE_ENUM, folder: string) => {
     app.post(route, auth, async function (req, res) {

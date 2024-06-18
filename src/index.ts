@@ -4,7 +4,7 @@ import express from 'express'
 import { useAddons } from './addons'
 import { useKzenRoutes } from './apps/kzen/routes/useKzenRoutes'
 import { errorHandling } from './middleware'
-import { envSchema } from './utilities'
+import { envSchema } from './services/types'
 
 /* configs */
 dotenv.config()

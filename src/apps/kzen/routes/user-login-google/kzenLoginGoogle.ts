@@ -5,7 +5,7 @@ import { OAuth2Client } from 'google-auth-library'
 import { z } from 'zod'
 
 import { fetchUserIdByEmail } from './service/fetchUserIdByEmail'
-import { KZEN_ROUTE_ENUM } from '../../utilities/enums'
+import { KZEN_ROUTE_ENUM } from '../../services/enums'
 
 const requestBodySchema = z.object({
     accessToken: z.string(),
