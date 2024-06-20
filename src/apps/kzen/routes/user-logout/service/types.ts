@@ -8,7 +8,16 @@ const heroesTokensSchema = z.object({
 })
 
 export const fetchUserBySessionIdResponseSchema = z.object({
-    heroes_tokens: z.array(heroesTokensSchema),
+    data: z.object({
+        heroes_tokens: z.array(heroesTokensSchema),
+    }),
 })
 
 export type IFetchUserBySessionIdResponseSchema = z.infer<typeof fetchUserBySessionIdResponseSchema>
+
+export const loginSchema = z.object({
+    email: z.string().email(),
+    password: z.string(),
+})
+
+export type ILoginSchema = z.infer<typeof loginSchema>

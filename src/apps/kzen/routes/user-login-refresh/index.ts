@@ -11,18 +11,15 @@ import { ServerStatus } from '../../services/types'
 export const userLoginRefresh = (app: Express) => {
     app.post(KZEN_ROUTE_ENUM.LOGIN_REFRESH, auth, async function (req: Request, res: Response) {
         const { sessionId } = req.cookies
-        console.log('sessionId->>', sessionId)
 
         if (!sessionId) {
-            return res.status(200).send({ message: 'Unauthorized' })
+            return res.status(200).send({ message: 'unauthorized' })
         }
 
-        console.log('here', sessionId)
-
         const user: IKzenUser | undefined = await validateSessionId(sessionId)
-
+        console.log('sessionId', sessionId, user)
         if (!user) {
-            return res.status(401).send()
+            return res.status(200).send({ message: 'unauthorized' })
         }
 
         /* *** */

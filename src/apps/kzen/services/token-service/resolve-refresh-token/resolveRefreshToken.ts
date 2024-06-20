@@ -19,11 +19,10 @@ export const resolveRefreshToken = async (props: { user: IKzenUser; sessionId?: 
 
     if (sessionId) {
         // if sessionId i want to update refresh token in db because i know it exists and it is valid
-        sessionRes = await mutation_updateUserToken(sessionId, tokens.refreshToken)
+        sessionRes = await mutation_updateUserToken({ sessionId, refreshJwt: tokens.refreshToken })
     } else {
         sessionRes = await mutation_insertUserToken(user.id, tokens.refreshToken)
     }
-    console.log('sessionRes', sessionRes)
     if (!sessionRes?.session_id) {
         throw Zerr({ message: 'Failed to authorize user', path: ['saveRefreshToken'], status: 422 })
     }

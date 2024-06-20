@@ -12,7 +12,6 @@ import { ServerStatus } from '../../services/types'
 export const userLogin = (app: Express) => {
     app.post(KZEN_ROUTE_ENUM.LOGIN, auth, async function (req: Request, res: Response) {
         const userLoginData: ILoginSchema = loginSchema.parse(req.body)
-        console.log('loginCredentials', userLoginData)
 
         const user: IKzenUser | undefined = await validateUserCredentials(userLoginData)
 

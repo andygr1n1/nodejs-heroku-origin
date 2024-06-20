@@ -1,4 +1,4 @@
-import { kzenUserSchema, type IKzenUser } from '@/apps/kzen/services/types'
+import { type IKzenUser } from '@/apps/kzen/services/types'
 import { Zerr } from '@/middleware'
 import { generateClient } from '@/services/graphql-service'
 import { gql } from 'graphql-request'
@@ -25,7 +25,7 @@ export const query_userDataByEmail = async (email: string): Promise<IKzenUser | 
         `
 
         const response = await client.request<{ heroes: IKzenUser[] }>(query, { email })
-        const result = kzenUserSchema.parse(response?.heroes?.[0])
+        const result = response?.heroes?.[0]
 
         return result
     } catch (e) {

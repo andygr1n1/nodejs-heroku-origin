@@ -20,6 +20,7 @@ export const fetchUserBySessionId = async (
                     hero {
                         password
                         email
+                        name
                         id
                         role
                         tokens {
@@ -31,12 +32,15 @@ export const fetchUserBySessionId = async (
             }
         `
 
-        const response = await client.request(query, { sessionId })
-
+        const response = await client.request<IFetchUserBySessionIdResponseSchema>(query, { sessionId })
         const result = fetchUserBySessionIdResponseSchema.parse(response)
+        if (result?.heroes_tokens && result.heroes_tokens.length === 0) {
+            console.log('hey there')
+            return
+        }
 
         return result
     } catch (e) {
-        throw Zerr({ message: 'Server error', status: 422, path: ['fetchUserBySessionId'] })
+        throw Zerr({ message: `Server error: ${e}`, status: 422, path: ['fetchUserBySessionId'] })
     }
 }

@@ -20,7 +20,7 @@ export const errorHandling = (error: Error, _req: Request, res: Response, next: 
         /*  */
 
         if (!errorData || !errorCodeStatus) {
-            return res.status(503).send({ message: 'Temporarily unable to handle the request' })
+            return res.status(422).send({ message: 'Temporarily unable to handle the request' })
         } else {
             return res.status(errorCodeStatus).send({ message })
         }
@@ -29,7 +29,7 @@ export const errorHandling = (error: Error, _req: Request, res: Response, next: 
     if (res.headersSent) {
         next(error)
     } else {
-        return res.status(503).send({ message: 'Temporarily unable to handle the request' })
+        return res.status(422).send({ message: 'Temporarily unable to handle the request' })
     }
 }
 

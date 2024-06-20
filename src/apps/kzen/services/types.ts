@@ -17,6 +17,14 @@ export type IKzenUserRegisterSchema = z.infer<typeof kzenUserRegisterSchema>
 
 /*  */
 
+export const kzenUserHeroRegisterSchema = z.object({
+    email: z.string().email(),
+    password: z.string().min(2),
+    name: z.string(),
+    role: z.string().min(1),
+})
+export type IKzenUserHeroRegisterSchema = z.infer<typeof kzenUserHeroRegisterSchema>
+
 export const kzenUserSchema = z.object({
     id: z.string().uuid(),
     email: z.string(),
