@@ -8,6 +8,14 @@ export type IServerStatus = z.infer<typeof ServerStatusSchema>
 
 /*  */
 
+export const UserRoleSchema = z.enum(['hero', 'guest', 'super_hero', 'admin'])
+export const UserRole = UserRoleSchema.Values
+export type IUserRole = z.infer<typeof UserRoleSchema>
+
+export const ALLOWED_ROLES: IUserRole[] = [UserRole.admin, UserRole.guest, UserRole.hero, UserRole.super_hero]
+
+/*  */
+
 export const kzenUserRegisterSchema = z.object({
     email: z.string().email(),
     password: z.string().min(2),
@@ -21,7 +29,7 @@ export const kzenUserHeroRegisterSchema = z.object({
     email: z.string().email(),
     password: z.string().min(2),
     name: z.string(),
-    role: z.string().min(1),
+    role: UserRoleSchema,
 })
 export type IKzenUserHeroRegisterSchema = z.infer<typeof kzenUserHeroRegisterSchema>
 
@@ -29,7 +37,7 @@ export const kzenUserSchema = z.object({
     id: z.string().uuid(),
     email: z.string(),
     name: z.string(),
-    role: z.string(),
+    role: UserRoleSchema,
     password: z.string(),
     tokens: z.array(
         z

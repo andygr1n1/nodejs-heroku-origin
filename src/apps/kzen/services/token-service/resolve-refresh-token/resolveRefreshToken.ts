@@ -3,7 +3,7 @@ import { generateTokens } from '@/services/token-service'
 
 import type { ISessionResSchema } from './types'
 import { mutation_insertUserToken, mutation_updateUserToken } from '../../graphql-service'
-import type { IKzenUser } from '../../types'
+import { ALLOWED_ROLES, type IKzenUser } from '../../types'
 
 /*  add,update refresh jwt */
 export const resolveRefreshToken = async (props: { user: IKzenUser; sessionId?: string }) => {
@@ -12,7 +12,7 @@ export const resolveRefreshToken = async (props: { user: IKzenUser; sessionId?: 
     const tokens = generateTokens({
         id: user.id,
         role: user.role,
-        'allowed-roles': ['hero', 'superHero', 'guest'],
+        'allowed-roles': ALLOWED_ROLES,
     })
 
     let sessionRes: ISessionResSchema | undefined

@@ -1,3 +1,4 @@
+import { UserRoleSchema } from '@/apps/kzen/services/types'
 import { Zerr } from '@/middleware'
 import jwt from 'jsonwebtoken'
 import { z } from 'zod'
@@ -7,8 +8,8 @@ import type { ITokensSchema } from '../types'
 // Define the payload
 const payloadSchema = z.object({
     id: z.string(),
-    role: z.string(),
-    'allowed-roles': z.array(z.string()),
+    role: UserRoleSchema,
+    'allowed-roles': z.array(UserRoleSchema),
 })
 type IPayload = z.infer<typeof payloadSchema>
 
