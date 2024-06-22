@@ -1,9 +1,9 @@
 import * as esbuild from 'esbuild'
-//src/server.ts  --bundle --outfile=dist/server.mjs --format=esm --platform=node
+//src/index.ts  --bundle --outfile=build/index.mjs --format=esm --platform=node
 await esbuild.build({
-    entryPoints: ['src/server.ts'],
+    entryPoints: ['src/index.ts'],
     bundle: true,
-    outfile: 'dist/server.mjs',
+    outfile: 'build/index.mjs',
     format: 'esm',
     target: 'esnext',
     platform: 'node',
