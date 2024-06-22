@@ -1,3 +1,8 @@
 node_modules
 dist
 build
+esbuild.config.ts
+build.ts
+build.js
+build.cjs
+loader.mjs

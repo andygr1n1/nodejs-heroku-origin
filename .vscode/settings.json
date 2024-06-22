@@ -8,6 +8,7 @@
         "grini",
         "HASURA",
         "kzen",
+        "outfile",
         "precommit",
         "timestamptz",
         "tsnode",
