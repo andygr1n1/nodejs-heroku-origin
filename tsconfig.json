@@ -9,7 +9,7 @@
         "types": ["node"], // Influx uses built-in node modules like http or url
         "sourceMap": true,
         "esModuleInterop": true,
-        "rootDir": "./",
+        // "rootDir": "./",
         "outDir": "./build",
         "strict": true,
         "emitDecoratorMetadata": true,
@@ -18,8 +18,16 @@
         "skipLibCheck": true /* Skip type checking of declaration files. */,
         "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
         "resolveJsonModule": true,
+        "baseUrl": ".",
+        "rootDir": "src",
+        "paths": {
+            "@/*": ["src/*"]
+        }
         // "verbatimModuleSyntax": true
+
+        // "target": "ES2021",
+        // "module": "commonjs"
     },
-    "include": ["src/**/*.ts"],
-    "exclude": ["node_modules", "**/*.spec.ts"]
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "**/*.spec.ts", "build"]
 }

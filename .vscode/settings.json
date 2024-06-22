@@ -1,6 +1,8 @@
 {
     "cSpell.words": [
         "andygr",
+        "bcrypted",
+        "Dmail",
         "expressjwt",
         "fileupload",
         "grini",
@@ -9,6 +11,6 @@
         "precommit",
         "timestamptz",
         "tsnode",
-        "xata"
+        "Zerr"
     ]
 }
