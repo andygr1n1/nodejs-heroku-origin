@@ -6,7 +6,7 @@ import { KZEN_ROUTE_ENUM } from '../../services/enums'
 import { resolveRefreshToken, setupHttpCookie } from '../../services/token-service'
 import type { IKzenUser } from '../../services/types'
 import { ServerStatus } from '../../services/types'
-
+/* autologin */
 /* using sessionId from req.cookies to validate user */
 export const userLoginRefresh = (app: Express) => {
     app.post(KZEN_ROUTE_ENUM.LOGIN_REFRESH, auth, async function (req: Request, res: Response) {
