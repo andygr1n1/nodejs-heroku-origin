@@ -5,7 +5,7 @@
     "main": "./build/src/index.js",
     "scripts": {
         "clean": "rimraf build",
-        "build": "yarn install && yarn clean && npx esbuild src/index.ts --bundle --outfile=build/index.mjs --format=esm --platform=node --sourcemap --banner:js=\"const { require, __filename,__dirname } = await (async () => {\n\tconst { createRequire } = await import('node:module');\n\tconst { fileURLToPath } = await import('node:url');\n\treturn {\n\t\trequire: createRequire(import.meta.url),\n\t\t__filename: fileURLToPath(import.meta.url),\n\t\t__dirname: fileURLToPath(new URL('.', import.meta.url)),\n\t};\n})();\"",
+        "build": "yarn clean && npx esbuild src/index.ts --bundle --outfile=build/index.mjs --format=esm --platform=node --sourcemap --banner:js=\"const { require, __filename,__dirname } = await (async () => {\n\tconst { createRequire } = await import('node:module');\n\tconst { fileURLToPath } = await import('node:url');\n\treturn {\n\t\trequire: createRequire(import.meta.url),\n\t\t__filename: fileURLToPath(import.meta.url),\n\t\t__dirname: fileURLToPath(new URL('.', import.meta.url)),\n\t};\n})();\"",
         "start": "node build/index.mjs",
         "test": "echo \"Error: no test specified\" && exit 1",
         "nodejs": "node index.mjs",
