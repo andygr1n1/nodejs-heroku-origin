@@ -81,7 +81,7 @@
     },
     "engines": {
         "node": "20.11.0",
-        "yarn": ">=1.22.22",
-        "typescript": "^5.4.5"
+        "yarn": "1.22.22",
+        "typescript": "5.4.5"
     }
 }
