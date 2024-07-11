@@ -24,7 +24,7 @@ export const generateTokens = (payload: IPayload): ITokensSchema => {
         throw Zerr({ message: 'Token protection missed uniq keys', path: ['generateTokens'], status: 422 })
     }
 
-    const accessToken = jwt.sign(payload, jwtAccessSecret, { expiresIn: '20m' })
+    const accessToken = jwt.sign(payload, jwtAccessSecret, { expiresIn: '30m' })
     const refreshToken = jwt.sign(payload, jwtRefreshSecret, { expiresIn: '30d' })
 
     return { accessToken, refreshToken }
