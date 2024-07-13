@@ -1,10 +1,7 @@
 import { z } from 'zod'
 
-/*  */
-
 export const ServerStatusSchema = z.enum(['success', 'registered', 'failed', 'unauthorized'])
 export const ServerStatus = ServerStatusSchema.Values
-export type IServerStatus = z.infer<typeof ServerStatusSchema>
 
 /*  */
 
@@ -51,12 +48,6 @@ export const kzenUserSchema = z.object({
 export type IKzenUser = z.infer<typeof kzenUserSchema>
 
 /*  */
-
-const accessKeysSchema = z.object({
-    accessId: z.string().min(1),
-})
-
-export type IAccessKeys = z.infer<typeof accessKeysSchema>
 
 /*  */
 export const emailSchema = z.object({

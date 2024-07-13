@@ -6,8 +6,6 @@ import bcrypt from 'bcryptjs'
 import { generateNewPassword } from '../helpers/generateNewPassword'
 
 export const generateGoogleUser = async (email: string): Promise<IKzenUser | undefined> => {
-    console.log(email)
-
     let user = await query_userDataByEmail(email)
     if (!user) {
         user = await mutation_InsertHeroUser({

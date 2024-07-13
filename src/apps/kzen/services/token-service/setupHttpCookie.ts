@@ -1,12 +1,13 @@
-import type { Response } from 'express'
+import { Zerr } from '@/middleware'
+import jwt from 'jsonwebtoken'
 
-export const setupHttpCookie = (res: Response, sessionId: string) => {
-    res.cookie('sessionId', sessionId, {
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        // secure: process.env.NODE_ENV === 'production', // Ensure secure is only true in production
-        // secure: process.env.NODE_ENV === 'production', // Ensure secure is only true in production
-        secure: true, // Ensure secure is only true in production
-        sameSite: 'none', // Allow cross-site usage
-    })
+export const setupSessionToken = ({ sessionId }: { sessionId: string }) => {
+    const jwtRefreshSecret = process.env.JWT_REFRESH_SECRET
+
+    if (!jwtRefreshSecret) {
+        throw Zerr({ message: 'Token protection missed uniq keys', path: ['generateTokens'], status: 422 })
+    }
+
+    const sessionJWT = jwt.sign({ sessionId }, jwtRefreshSecret, { expiresIn: '30d' })
+    return sessionJWT
 }

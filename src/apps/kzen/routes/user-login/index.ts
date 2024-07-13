@@ -4,7 +4,7 @@ import type { Express, Response, Request } from 'express'
 import { loginSchema, type ILoginSchema } from './service/types'
 import { validateUserCredentials } from './service/validateUserCredentials'
 import { KZEN_ROUTE_ENUM } from '../../services/enums'
-import { resolveRefreshToken, setupHttpCookie } from '../../services/token-service'
+import { resolveRefreshToken, setupSessionToken } from '../../services/token-service'
 import type { IKzenUser } from '../../services/types'
 import { ServerStatus } from '../../services/types'
 
@@ -26,8 +26,10 @@ export const userLogin = (app: Express) => {
         /* *** */
         /* if user sent request on this route, he doesn't have a valid session. */
         /* must be created a session and a refresh token related to it */
-        const { sessionId, accessId } = await resolveRefreshToken({ user })
-        setupHttpCookie(res, sessionId)
-        res.status(200).send({ message: ServerStatus.success, accessId })
+        const { sessionId, accessJWT } = await resolveRefreshToken({ user })
+
+        const sessionJWT = setupSessionToken({ sessionId })
+
+        res.status(200).send({ message: ServerStatus.success, accessJWT, sessionJWT })
     })
 }

@@ -27,5 +27,5 @@ export const resolveRefreshToken = async (props: { user: IKzenUser; sessionId?: 
         throw Zerr({ message: 'Failed to authorize user', path: ['saveRefreshToken'], status: 422 })
     }
 
-    return { refreshId: tokens.refreshToken, accessId: tokens.accessToken, sessionId: sessionRes.session_id }
+    return { refreshId: tokens.refreshToken, accessJWT: tokens.accessToken, sessionId: sessionRes.session_id }
 }

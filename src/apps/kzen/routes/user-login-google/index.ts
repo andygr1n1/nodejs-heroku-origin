@@ -5,7 +5,7 @@ import { OAuth2Client } from 'google-auth-library'
 import { generateGoogleUser } from './service/generateGoogleUser'
 import { googleLoginRequestSchema } from './service/types'
 import { KZEN_ROUTE_ENUM } from '../../services/enums'
-import { resolveRefreshToken, setupHttpCookie } from '../../services/token-service'
+import { resolveRefreshToken, setupSessionToken } from '../../services/token-service'
 import { ServerStatus, type IKzenUser } from '../../services/types'
 
 export const kzenLoginGoogle = (app: Express) => {
@@ -13,9 +13,7 @@ export const kzenLoginGoogle = (app: Express) => {
         const googleData = googleLoginRequestSchema.parse(req.body)
         const client = new OAuth2Client()
 
-        const ticket = await client.getTokenInfo(googleData.accessId)
-
-        console.log('ticket', ticket)
+        const ticket = await client.getTokenInfo(googleData.accessJWT)
 
         const email = ticket.email
 
@@ -40,8 +38,8 @@ export const kzenLoginGoogle = (app: Express) => {
         /* *** */
         /* if user sent request on this route, he doesn't have a valid session. */
         /* must be created a session and a refresh token related to it */
-        const { sessionId, accessId } = await resolveRefreshToken({ user })
-        setupHttpCookie(res, sessionId)
-        res.status(200).send({ message: ServerStatus.success, accessId })
+        const { sessionId, accessJWT } = await resolveRefreshToken({ user })
+        const sessionJWT = setupSessionToken({ sessionId })
+        res.status(200).send({ message: ServerStatus.success, accessJWT, sessionJWT })
     })
 }
