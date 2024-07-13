@@ -13,6 +13,7 @@ import { userNewPassword } from './user-new-password'
 import { userRegistration } from './user-registration'
 import { userResendActivationLink } from './user-resend-activation-link'
 import { userRestore } from './user-restore'
+import { userUpdatePassword } from './user-update-password'
 import { KZEN_ROUTE_ENUM } from '../services/enums'
 
 export const useKzenRoutes = (app: Express) => {
@@ -32,6 +33,8 @@ export const useKzenRoutes = (app: Express) => {
     userRestore(app)
 
     userNewPassword(app)
+
+    userUpdatePassword(app)
 
     userLogout(app)
 

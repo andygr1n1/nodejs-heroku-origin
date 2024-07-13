@@ -16,4 +16,5 @@ export enum KZEN_ROUTE_ENUM {
     REGISTER_VALIDATE_ACTIVATION_CODE = '/kzen/register/validate-activation-code',
     RESTORE = '/kzen/restore',
     NEW_PASSWORD = '/kzen/new-password',
+    PROFILE_UPDATE_PASSWORD = '/kzen/update-password',
 }
