@@ -51,8 +51,10 @@ export const useKzenRoutes = (app: Express) => {
     kZenDeleteImageFromServer(app, KZEN_ROUTE_ENUM.GOAL_SLIDE_IMAGE_DELETE, 'goals-slides')
 
     kZenUploadImageToServer(app, KZEN_ROUTE_ENUM.ACH_IMAGE_UPLOAD, 'achievements')
-    kZenUploadImageToServer(app, KZEN_ROUTE_ENUM.STORY_IMAGE_UPLOAD, 'stories')
+    kZenDeleteImageFromServer(app, KZEN_ROUTE_ENUM.GOAL_SLIDE_IMAGE_DELETE, 'achievements')
 
+    kZenUploadImageToServer(app, KZEN_ROUTE_ENUM.STORY_IMAGE_UPLOAD, 'stories')
+    kZenDeleteImageFromServer(app, KZEN_ROUTE_ENUM.GOAL_SLIDE_IMAGE_DELETE, 'stories')
     // kzen autoRitualizeGoal
     kZenAutoRitualizeGoal(app)
 
