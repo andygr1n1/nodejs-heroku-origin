@@ -1,14 +1,15 @@
-import { auth } from '@/middleware'
 import type { Express } from 'express'
 import fetch from 'node-fetch'
 
 import type { KZEN_ROUTE_ENUM } from '../../services/enums'
 
 export const kZenDeleteImageFromServer = (app: Express, route: KZEN_ROUTE_ENUM, folder: string) => {
-    app.post(route, auth, async function (req, res) {
+    app.post(route, async function (req, res) {
         try {
-            const imgTitle = req.body.imgTitle
+            const imgTitle = req.body?.event?.data?.old?.img_path || req.body.imgTitle
+
             console.log('imgTitle', imgTitle)
+
             if (!imgTitle) {
                 throw { msg: 'kZenProfileImageDelete:bad data' }
             }
@@ -28,7 +29,7 @@ export const kZenDeleteImageFromServer = (app: Express, route: KZEN_ROUTE_ENUM, 
 
             await fetch(url, options)
                 .then((json) => console.info(json))
-                .then(() => res.status(200).send({ image: imgTitle, status: 201 }))
+                .then(() => res.status(200).send({ image: imgTitle, status: 'success' }))
                 .catch((err) => console.error('error:' + err))
         } catch (e) {
             console.error(e)
