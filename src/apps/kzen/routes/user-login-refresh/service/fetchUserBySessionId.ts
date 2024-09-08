@@ -35,7 +35,6 @@ export const fetchUserBySessionId = async (
         const response = await client.request<IFetchUserBySessionIdResponseSchema>(query, { sessionId })
         const result = fetchUserBySessionIdResponseSchema.parse(response)
         if (result?.heroes_tokens && result.heroes_tokens.length === 0) {
-            console.log('hey there')
             return
         }
 

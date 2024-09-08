@@ -21,7 +21,6 @@ export const kZenAutoRitualizeGoal = (app: Express) => {
 export async function updateExpiredRituals() {
     return
     // const expiredRitualGoals = await fetchExpiredRitualsQuery()
-    // console.info('expiredRitualGoals', expiredRitualGoals)
 
     // expiredRitualGoals?.forEach((goal) => {
     //     const { ritual_goal_created_at, ritual_goal_finished_at } = generateNewRitualCircle({

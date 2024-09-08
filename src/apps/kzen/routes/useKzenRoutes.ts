@@ -58,5 +58,7 @@ export const useKzenRoutes = (app: Express) => {
     // kzen autoRitualizeGoal
     kZenAutoRitualizeGoal(app)
 
+    kZenDeleteImageFromServer(app, KZEN_ROUTE_ENUM.IMAGE_DELETE)
+
     kZenDestroyData(app)
 }
