@@ -1,0 +1,30 @@
+version: '3'
+services:
+  nodejs-heroku-origin:
+    image: andygr1n1/nodejs-heroku-origin
+    container_name: nodejs-heroku-origin-container
+    ports:
+      - "8008:8008"
+    env_file:
+      - .env
+    networks:
+      - gold-timer-network
+
+  nginx:
+    image: nginx
+    container_name: nginx-proxy-nodejs-heroku-origin
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - nodejs-heroku-origin
+    networks:
+      - gold-timer-network
+
+networks:
+  gold-timer-network:
+    name: gold-timer-network
+    driver: bridge

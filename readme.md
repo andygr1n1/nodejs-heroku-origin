@@ -1,15 +1,26 @@
-curl -X POST -H "Content-Type: application/json" -d '{"name":"Andrew"}' localhost:4444/articles
+# Kzen proxy
 
-npx husky add .husky/pre-commit "yarn run prettier && yarn run lint && git add -A ."
+https://kzen.cloud/
 
-https://devcenter.heroku.com/articles/dynos
+# Production
 
-https://cryptic-thicket-06366.herokuapp.com/storage/kzen-img/da4bcb20-c005-42e0-b19e-64f8ecbb2f9b_crypto_no_alcohol.png
+https://srv642680.hstgr.cloud:444/
 
-list all files in directory::
-https://medium.com/stackfame/get-list-of-all-files-in-a-directory-in-node-js-befd31677ec5
+- build docker image and push to docker hub
 
+```
+docker login
+docker build -t andygr1n1/nodejs-heroku-origin -f Dockerfile.production .
+docker tag andygr1n1/nodejs-heroku-origin andygr1n1/nodejs-heroku-origin:latest
+docker push andygr1n1/nodejs-heroku-origin:latest
+```
 
-bunny:
-https://panel.bunny.net/
-https://docs.bunny.net/reference/get_-storagezonename-path-filename
+- update docker image in docker-compose-prod.yaml on the server
+
+```
+docker compose -f docker-compose-prod.yaml up -d --build
+```
+
+# Development
+
+- run docker compose or yarn watch
