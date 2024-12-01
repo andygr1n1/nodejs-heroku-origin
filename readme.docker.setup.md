@@ -5,3 +5,4 @@ docker tag andygr1n1/nodejs-heroku-origin andygr1n1/nodejs-heroku-origin:latest
 docker push andygr1n1/nodejs-heroku-origin:latest
 
 
+docker compose -f docker-compose-prod.yaml up -d --build

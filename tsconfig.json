@@ -22,7 +22,20 @@
         "rootDir": "src",
         "paths": {
             "@/*": ["src/*"]
-        }
+        },
+        "plugins": [
+            {
+                "name": "gql.tada/ts-plugin",
+                "shouldCheckForColocatedFragments": false,
+                "schemas": [
+                    {
+                        "name": "kzen-db",
+                        "schema": "./schema.graphql",
+                        "tadaOutputLocation": "./src/graphql-env.d.ts"
+                    }
+                ]
+            }
+        ]
         // "verbatimModuleSyntax": true
 
         // "target": "ES2021",

@@ -10,12 +10,14 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "nodejs": "node index.mjs",
         "watch": "tsx watch ./src/index.ts -e ejs,js,css,html,jpg,png,scss,ts",
+        "dev": "tsx watch ./src/index.ts -e ejs,js,css,html,jpg,png,scss,ts",
         "tsc": "tsc --noEmit",
         "lint": "eslint 'src/**/*.{ts,tsx,js,jsx}'",
         "lint:format": "npx eslint ./src --fix",
         "prettier": "prettier --write ./src",
         "prepare": "husky install",
-        "precommit": "yarn run prettier && yarn run lint && git add -A ."
+        "precommit": "yarn run prettier && yarn run lint && git add -A .",
+        "gendev": "dotenv -- cross-var gql.tada generate schema http://localhost:7008/v1/graphql/ -o schema.graphql --header \"x-hasura-admin-secret: %VITE_X_HASURA_ADMIN_SECRET%\" && gql.tada generate output"
     },
     "husky": {
         "hooks": {
@@ -41,6 +43,8 @@
         "@types/nodemailer": "^6.4.8",
         "@typescript-eslint/eslint-plugin": "^7.1.0",
         "@typescript-eslint/parser": "^7.1.0",
+        "cross-var": "^1.1.0",
+        "dotenv-cli": "^7.4.4",
         "esbuild": "^0.21.5",
         "eslint": "^8.57.0",
         "eslint-config-prettier": "^9.1.0",
@@ -62,12 +66,13 @@
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
         "date-fns": "^2.30.0",
-        "dotenv": "^16.0.3",
+        "dotenv": "^16.4.5",
         "express": "^4.18.2",
         "express-async-errors": "^3.1.1",
         "express-fileupload": "^1.4.0",
         "express-jwt": "^7.7.7",
         "google-auth-library": "^9.10.0",
+        "gql.tada": "^1.8.10",
         "graphql": "^16.6.0",
         "graphql-request": "^6.0.0",
         "husky": "^8.0.2",
@@ -78,8 +83,5 @@
         "nodemailer": "^6.9.3",
         "tsx": "^4.7.1",
         "zod": "^3.23.8"
-    },
-    "engines": {
-        "yarn": "1.22.22"
     }
 }
