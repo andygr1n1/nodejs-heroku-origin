@@ -3,6 +3,7 @@ import express from 'express'
 
 import { useAddons } from './addons'
 import { useKzenRoutes } from './apps/kzen/routes/useKzenRoutes'
+import { useOurStoryRoutes } from './apps/our-story/routes/useOurStoryRoutes'
 import { errorHandling } from './middleware'
 import { envSchema } from './services/types'
 
@@ -16,6 +17,8 @@ const app = express()
 useAddons(app)
 
 useKzenRoutes(app)
+
+useOurStoryRoutes(app)
 
 app.get('/', (req, res) => {
     return res.json('Kzen drive')

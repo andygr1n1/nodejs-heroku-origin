@@ -19,6 +19,7 @@ docker push andygr1n1/nodejs-heroku-origin:latest
 
 ```
 docker compose -f docker-compose-prod.yaml up -d --build
+docker compose -f docker-compose-prod.yaml down --remove-orphans
 ```
 
 # Development
