@@ -1,0 +1,29 @@
+version: '3.8'
+networks:
+    kzen-backend-network:
+        name: kzen-backend
+services:
+    kzen-backend-service:
+        container_name: kzen-backend-container
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - '8008:8008'
+        restart: unless-stopped
+        networks:
+            - kzen-backend-network
+        env_file:
+            - .env
+    kzen-backend-nginx:
+        container_name: kzen-backend-nginx
+        image: nginx
+        ports:
+            - '444:444'
+        volumes:
+            - ./nginx.conf:/etc/nginx/conf.d/default.conf
+            - /etc/letsencrypt:/etc/letsencrypt:ro
+        depends_on:
+            - kzen-backend-service
+        networks:
+            - kzen-backend-network
