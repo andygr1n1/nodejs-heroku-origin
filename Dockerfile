@@ -2,19 +2,18 @@
 FROM node:20.11.0-alpine
 
 # Set working directory
-WORKDIR /nodejs_heroku_origin
+WORKDIR /app
 
 # Copy package files
-COPY package.json .
-COPY yarn.lock .
+COPY ./build ./build
 
 # Install dependencies
 RUN apk --no-cache add bash \
     && npm install -g yarn@1.22.22 --force \
     && yarn install
 
-# Copy the rest of your application code
-COPY . .
+EXPOSE 8008
+EXPOSE 444
 
 # Run your application
-CMD ["yarn", "watch"]
+CMD ["node", "build/index.mjs"]

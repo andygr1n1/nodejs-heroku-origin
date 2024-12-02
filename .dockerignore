@@ -1,9 +1,4 @@
-.env
 .env.local
 .env.production
 .env.development
-build
-dist
 node_modules
-docker-compose.example.yaml
-docker-compose.yaml
