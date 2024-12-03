@@ -1,7 +1,6 @@
-version: '3.8'
 networks:
     kzen-backend-network:
-        name: kzen-backend
+        external: true  # Indicate that this network is external and already exists
 services:
     kzen-backend-service:
         container_name: kzen-backend-container
