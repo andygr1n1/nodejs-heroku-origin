@@ -5,6 +5,7 @@ import { kZenDeleteImageFromServer } from './delete-image-from-server/kZenDelete
 import { kZenDestroyData } from './destroy-data/kZenDestroyData'
 import { kZenUploadImageToServer } from './upload-image-to-server/kZenUploadImageToServer'
 import { userActivation } from './user-activation'
+import { userGetInformation } from './user-get-information'
 import { userLogin } from './user-login'
 import { kzenLoginGoogle } from './user-login-google'
 import { userLoginRefresh } from './user-login-refresh'
@@ -37,6 +38,8 @@ export const useKzenRoutes = (app: Express) => {
     userUpdatePassword(app)
 
     userLogout(app)
+
+    userGetInformation(app)
 
     // kzen upload/remove profile image
     kZenUploadImageToServer(app, KZEN_ROUTE_ENUM.PROFILE_IMAGE_UPLOAD, 'avatars')

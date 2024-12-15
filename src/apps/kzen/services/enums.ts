@@ -22,4 +22,5 @@ export enum KZEN_ROUTE_ENUM {
     RESTORE = '/kzen/restore',
     NEW_PASSWORD = '/kzen/new-password',
     PROFILE_UPDATE_PASSWORD = '/kzen/update-password',
+    USER_GET_INFORMATION = '/kzen/user-get-information',
 }
