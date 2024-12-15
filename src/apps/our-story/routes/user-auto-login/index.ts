@@ -20,7 +20,7 @@ export const userAutoLogin = (app: Express) => {
         testAuthorization(req, res)
 
         const validationResult = await validateIdentity({ registrationId, bookingId, requestSessionJWT })
-
+        console.log('validationResult', validationResult)
         if (!validationResult || !validationResult.id) {
             return res.status(200).send({ message: 'unauthorized' })
         }

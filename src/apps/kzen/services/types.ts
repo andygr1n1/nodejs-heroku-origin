@@ -13,6 +13,13 @@ export const ALLOWED_ROLES: IUserRole[] = [UserRole.admin, UserRole.guest, UserR
 
 /*  */
 
+export const kzenGuestSchema = z.object({
+    email: z.string().email(),
+})
+export type IKzenGuestSchema = z.infer<typeof kzenGuestSchema>
+
+/*  */
+
 export const kzenUserRegisterSchema = z.object({
     email: z.string().email(),
     password: z.string().min(2),
