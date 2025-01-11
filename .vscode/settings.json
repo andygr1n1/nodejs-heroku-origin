@@ -10,6 +10,7 @@
         "grini",
         "HASURA",
         "kzen",
+        "NODEMAILER",
         "outfile",
         "precommit",
         "timestamptz",
