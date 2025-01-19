@@ -10,7 +10,7 @@ export const userSendEmail = (app: Express) => {
     app.post(OUR_STORY_ROUTE_ENUM.USER_SEND_EMAIL, auth, async function (req: Request, res: Response) {
         const { emails, bookingId, language } = req.body
 
-        const superUserEmails = ['andy.grini@gmail.com']
+        const superUserEmails = ['andy.grini@gmail.com', 'dariadaria310795@gmail.com']
 
         await sendInformationEmail({ emails, bookingId, language })
         await sendSuperUserEmail({ superUserEmails, emails, bookingId })
