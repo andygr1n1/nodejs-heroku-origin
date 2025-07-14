@@ -1,3 +1,5 @@
+import os from 'os'
+
 import { KZEN_ROUTE_ENUM } from '../../services/enums'
 
 import { destroyDeletedDataMutation } from './helpers/destroyDeletedData.mutation'
@@ -14,6 +16,7 @@ export const kZenDestroyData = (app: Express) => {
 export async function destroyDeletedData() {
     const res = await destroyDeletedDataMutation()
     console.log('#########destroyDeletedData###########')
+    console.log(`${os.hostname()} ${new Date().toISOString()}`)
     console.log('destroyDeletedData:', res)
     console.log('#########destroyDeletedData###########')
 }
