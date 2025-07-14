@@ -1,12 +1,15 @@
-import { Zerr, auth } from '@/middleware'
 import bcrypt from 'bcryptjs'
-import type { Express } from 'express'
 
-import { newPasswordSchema } from './service/types'
+import { Zerr, auth } from '@/middleware'
+
 import { KZEN_ROUTE_ENUM } from '../../services/enums'
 import { mutation_updatePasswordByEmail } from '../../services/graphql-service/mutation_updatePasswordByEmail'
 import { query_emailByRestoreCode } from '../../services/graphql-service/query_emailByRestoreCode'
 import { ServerStatus } from '../../services/types'
+
+import { newPasswordSchema } from './service/types'
+
+import type { Express } from 'express'
 
 export const userNewPassword = (app: Express) => {
     app.post(KZEN_ROUTE_ENUM.NEW_PASSWORD, auth, async function (req, res) {

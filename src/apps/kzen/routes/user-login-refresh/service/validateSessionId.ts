@@ -1,7 +1,8 @@
-import type { IKzenUser } from '@/apps/kzen/services/types'
 import jwt from 'jsonwebtoken'
 
 import { fetchUserBySessionId } from './fetchUserBySessionId'
+
+import type { IKzenUser } from '@/apps/kzen/services/types'
 
 export const validateSessionId = async (sessionId: string): Promise<IKzenUser | undefined> => {
     const userResponse = await fetchUserBySessionId(sessionId)

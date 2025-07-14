@@ -1,7 +1,8 @@
+import { gql } from 'graphql-request'
+
 import { emailSchema, type IEmail } from '@/apps/kzen/services/types'
 import { Zerr } from '@/middleware'
 import { generateClient } from '@/services/graphql-service'
-import { gql } from 'graphql-request'
 
 export const query_emailByRestoreCode = async (restoreCode: string): Promise<IEmail | undefined> => {
     try {

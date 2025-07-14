@@ -1,4 +1,4 @@
-import type { Express } from 'express'
+import { KZEN_ROUTE_ENUM } from '../services/enums'
 
 import { kZenAutoRitualizeGoal } from './auto-ritualize-goals/kZenAutoRitualizeGoal.route'
 import { kZenDeleteImageFromServer } from './delete-image-from-server/kZenDeleteImageFromServer'
@@ -15,7 +15,8 @@ import { userRegistration } from './user-registration'
 import { userResendActivationLink } from './user-resend-activation-link'
 import { userRestore } from './user-restore'
 import { userUpdatePassword } from './user-update-password'
-import { KZEN_ROUTE_ENUM } from '../services/enums'
+
+import type { Express } from 'express'
 
 export const useKzenRoutes = (app: Express) => {
     /* routes */

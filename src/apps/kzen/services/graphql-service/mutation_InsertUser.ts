@@ -1,9 +1,11 @@
-import { Zerr } from '@/middleware'
-import { generateClient } from '@/services/graphql-service'
 import { gql } from 'graphql-request'
 
-import type { IKzenUser, IKzenUserRegisterSchema } from '../types'
+import { Zerr } from '@/middleware'
+import { generateClient } from '@/services/graphql-service'
+
 import { kzenUserRegisterSchema } from '../types'
+
+import type { IKzenUser, IKzenUserRegisterSchema } from '../types'
 
 export const mutation_InsertUser = async (newUser: IKzenUserRegisterSchema): Promise<IKzenUser | undefined> => {
     try {

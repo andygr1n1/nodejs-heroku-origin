@@ -1,7 +1,8 @@
+import { gql } from 'graphql-request'
+
 import { type IKzenUser } from '@/apps/kzen/services/types'
 import { Zerr } from '@/middleware'
 import { generateClient } from '@/services/graphql-service'
-import { gql } from 'graphql-request'
 
 export const query_userDataByEmail = async (email: string): Promise<IKzenUser | undefined> => {
     try {

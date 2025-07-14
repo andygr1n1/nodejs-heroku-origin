@@ -1,7 +1,8 @@
-import { UserRoleSchema } from '@/apps/kzen/services/types'
-import { Zerr } from '@/middleware'
 import jwt from 'jsonwebtoken'
 import { z } from 'zod'
+
+import { UserRoleSchema } from '@/apps/kzen/services/types'
+import { Zerr } from '@/middleware'
 
 import type { ITokensSchema } from '../types'
 

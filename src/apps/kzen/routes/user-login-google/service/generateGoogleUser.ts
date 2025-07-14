@@ -1,7 +1,8 @@
+import bcrypt from 'bcryptjs'
+
 import { query_userDataByEmail } from '@/apps/kzen/services/graphql-service'
 import { mutation_InsertHeroUser } from '@/apps/kzen/services/graphql-service/mutation_InsertHeroUser'
 import { UserRole, type IKzenUser } from '@/apps/kzen/services/types'
-import bcrypt from 'bcryptjs'
 
 import { generateNewPassword } from '../helpers/generateNewPassword'
 

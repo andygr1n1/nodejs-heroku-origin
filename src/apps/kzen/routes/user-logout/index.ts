@@ -1,11 +1,13 @@
-import { auth } from '@/middleware'
-import type { Express, Response, Request } from 'express'
-import type { JwtPayload } from 'jsonwebtoken'
 import jwt from 'jsonwebtoken'
+
+import { auth } from '@/middleware'
 
 import { KZEN_ROUTE_ENUM } from '../../services/enums'
 import { mutation_deleteSession } from '../../services/graphql-service/mutation_deleteSession'
 import { ServerStatus } from '../../services/types'
+
+import type { Express, Response, Request } from 'express'
+import type { JwtPayload } from 'jsonwebtoken'
 
 /* using user credentials from login form to validate user */
 export const userLogout = (app: Express) => {

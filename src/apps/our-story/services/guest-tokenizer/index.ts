@@ -1,8 +1,10 @@
-import { UserRoleSchema } from '@/apps/kzen/services/types'
-import { Zerr } from '@/middleware'
-import type { ITokensSchema } from '@/services/types'
 import jwt from 'jsonwebtoken'
 import { z } from 'zod'
+
+import { UserRoleSchema } from '@/apps/kzen/services/types'
+import { Zerr } from '@/middleware'
+
+import type { ITokensSchema } from '@/services/types'
 
 // Define the payload
 const payloadSchema = z.object({

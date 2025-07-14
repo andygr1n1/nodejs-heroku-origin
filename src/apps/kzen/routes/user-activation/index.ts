@@ -1,9 +1,10 @@
 import { auth, Zerr } from '@/middleware'
-import type { Express, Response, Request } from 'express'
 
 import { KZEN_ROUTE_ENUM } from '../../services/enums'
 import { mutation_activateUser } from '../../services/graphql-service/mutation_activateUser'
 import { activationCodeSchema, ServerStatus } from '../../services/types'
+
+import type { Express, Response, Request } from 'express'
 
 export const userActivation = (app: Express) => {
     app.post(KZEN_ROUTE_ENUM.REGISTER_VALIDATE_ACTIVATION_CODE, auth, async function (req: Request, res: Response) {

@@ -1,12 +1,14 @@
 import { Zerr, auth } from '@/middleware'
-import type { Express, Response, Request } from 'express'
+
+import { KZEN_ROUTE_ENUM } from '../../services/enums'
+import { resolveRefreshToken, setupSessionToken } from '../../services/token-service'
+import { ServerStatus } from '../../services/types'
 
 import { loginSchema, type ILoginSchema } from './service/types'
 import { validateUserCredentials } from './service/validateUserCredentials'
-import { KZEN_ROUTE_ENUM } from '../../services/enums'
-import { resolveRefreshToken, setupSessionToken } from '../../services/token-service'
+
 import type { IKzenUser } from '../../services/types'
-import { ServerStatus } from '../../services/types'
+import type { Express, Response, Request } from 'express'
 
 /* using user credentials from login form to validate user */
 export const userLogin = (app: Express) => {

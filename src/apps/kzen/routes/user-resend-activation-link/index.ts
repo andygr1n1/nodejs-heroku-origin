@@ -1,10 +1,11 @@
 import { Zerr, auth } from '@/middleware'
-import type { Express, Response, Request } from 'express'
 
 import { sendActivationEmail } from '../../services/email-service/sendActivationEmail'
 import { KZEN_ROUTE_ENUM } from '../../services/enums'
 import { query_userDataByEmail } from '../../services/graphql-service/query_userDataByEmail'
 import { ServerStatus, emailSchema } from '../../services/types'
+
+import type { Express, Response, Request } from 'express'
 
 export const userResendActivationLink = (app: Express) => {
     app.post(KZEN_ROUTE_ENUM.REGISTER_RESEND_ACTIVATION_LINK, auth, async function (req: Request, res: Response) {

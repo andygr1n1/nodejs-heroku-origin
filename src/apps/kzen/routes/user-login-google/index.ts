@@ -1,12 +1,15 @@
-import { Zerr, auth } from '@/middleware'
-import type { Express } from 'express'
 import { OAuth2Client } from 'google-auth-library'
 
-import { generateGoogleUser } from './service/generateGoogleUser'
-import { googleLoginRequestSchema } from './service/types'
+import { Zerr, auth } from '@/middleware'
+
 import { KZEN_ROUTE_ENUM } from '../../services/enums'
 import { resolveRefreshToken, setupSessionToken } from '../../services/token-service'
 import { ServerStatus, type IKzenUser } from '../../services/types'
+
+import { generateGoogleUser } from './service/generateGoogleUser'
+import { googleLoginRequestSchema } from './service/types'
+
+import type { Express } from 'express'
 
 export const kzenLoginGoogle = (app: Express) => {
     app.post(KZEN_ROUTE_ENUM.LOGIN_GOOGLE, auth, async function (req, res) {

@@ -1,7 +1,7 @@
-import type { Express } from 'express'
-
 import { userAutoLogin } from './user-auto-login'
 import { userSendEmail } from './user-send-email'
+
+import type { Express } from 'express'
 
 export const useOurStoryRoutes = (app: Express) => {
     /* routes */

@@ -1,9 +1,10 @@
 import { Zerr } from '@/middleware'
 import { generateTokens } from '@/services/token-service'
 
-import type { ISessionResSchema } from './types'
 import { mutation_insertUserToken, mutation_updateUserToken } from '../../graphql-service'
 import { ALLOWED_ROLES, type IKzenUser } from '../../types'
+
+import type { ISessionResSchema } from './types'
 
 /*  add,update refresh jwt */
 export const resolveRefreshToken = async (props: { user: IKzenUser; sessionId?: string }) => {
