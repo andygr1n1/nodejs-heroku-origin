@@ -1,12 +1,14 @@
 import { subDays } from 'date-fns'
 import { gql } from 'graphql-request'
 
-import { generateClient } from '@/services/graphql-service'
+import { generateClient, generateDevClient } from '@/services/graphql-service'
 
 export const destroyDeletedDataMutation = async () => {
     try {
         const client = generateClient()
+        const devClient = generateDevClient()
         if (!client) throw new Error('generate client error')
+        if (!devClient) console.log('devClient: generate dev client error')
 
         const lte = subDays(new Date(Date.now()), 30)
         const mutation = gql`
@@ -26,6 +28,12 @@ export const destroyDeletedDataMutation = async () => {
         const response = await client.request(mutation, {
             lte,
         })
+
+        if (devClient) {
+            await devClient.request(mutation, {
+                lte,
+            })
+        }
 
         return response
     } catch (e) {
