@@ -1,5 +1,6 @@
-import type { Response, Request } from 'express'
 import jwt from 'jsonwebtoken'
+
+import type { Response, Request } from 'express'
 
 export const testAuthorization = (req: Request, res: Response) => {
     const { sessionJWT: requestSessionJWT, registrationId, bookingId } = req.body

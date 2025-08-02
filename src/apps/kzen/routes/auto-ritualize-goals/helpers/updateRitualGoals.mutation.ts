@@ -1,5 +1,6 @@
-import { generateClient } from '@/services/graphql-service'
 import { gql } from 'graphql-request'
+
+import { generateClient } from '@/services/graphql-service'
 
 import type { UpdatedRitualGoalType } from './autoRitualizeGoals.enums'
 

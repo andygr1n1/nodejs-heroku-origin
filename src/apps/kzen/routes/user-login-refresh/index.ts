@@ -1,13 +1,16 @@
-import { auth } from '@/middleware'
-import type { Express, Response, Request } from 'express'
-import type { JwtPayload } from 'jsonwebtoken'
 import jwt from 'jsonwebtoken'
 
-import { validateSessionId } from './service/validateSessionId'
+import { auth } from '@/middleware'
+
 import { KZEN_ROUTE_ENUM } from '../../services/enums'
 import { resolveRefreshToken, setupSessionToken } from '../../services/token-service'
-import type { IKzenUser } from '../../services/types'
 import { ServerStatus } from '../../services/types'
+
+import { validateSessionId } from './service/validateSessionId'
+
+import type { IKzenUser } from '../../services/types'
+import type { Express, Response, Request } from 'express'
+import type { JwtPayload } from 'jsonwebtoken'
 
 /* autologin */
 export const userLoginRefresh = (app: Express) => {

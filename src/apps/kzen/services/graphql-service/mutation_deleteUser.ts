@@ -1,6 +1,7 @@
+import { gql } from 'graphql-request'
+
 import { Zerr } from '@/middleware'
 import { generateClient } from '@/services/graphql-service'
-import { gql } from 'graphql-request'
 
 export const mutation_deleteUser = async (email: string) => {
     try {

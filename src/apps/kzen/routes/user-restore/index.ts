@@ -1,12 +1,14 @@
 import { Zerr, auth } from '@/middleware'
-import type { Express } from 'express'
+
+import { KZEN_ROUTE_ENUM } from '../../services/enums'
+import { query_userDataByEmail } from '../../services/graphql-service/query_userDataByEmail'
+import { ServerStatus, emailSchema } from '../../services/types'
 
 import { deleteRestoreCode } from './service/mutation_deleteRestoreCode'
 import { insertRestoreCode } from './service/mutation_insertRestoreCode'
 import { sendActivationRestore } from './service/sendActivationRestore'
-import { KZEN_ROUTE_ENUM } from '../../services/enums'
-import { query_userDataByEmail } from '../../services/graphql-service/query_userDataByEmail'
-import { ServerStatus, emailSchema } from '../../services/types'
+
+import type { Express } from 'express'
 
 export const userRestore = (app: Express) => {
     app.post(KZEN_ROUTE_ENUM.RESTORE, auth, async function (req, res) {

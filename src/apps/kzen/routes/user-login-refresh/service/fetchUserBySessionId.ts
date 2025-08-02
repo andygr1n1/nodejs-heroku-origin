@@ -1,9 +1,11 @@
-import { Zerr } from '@/middleware'
-import { generateClient } from '@/services/graphql-service'
 import { gql } from 'graphql-request'
 
-import type { IFetchUserBySessionIdResponseSchema } from './types'
+import { Zerr } from '@/middleware'
+import { generateClient } from '@/services/graphql-service'
+
 import { fetchUserBySessionIdResponseSchema } from './types'
+
+import type { IFetchUserBySessionIdResponseSchema } from './types'
 
 export const fetchUserBySessionId = async (
     sessionId: string,

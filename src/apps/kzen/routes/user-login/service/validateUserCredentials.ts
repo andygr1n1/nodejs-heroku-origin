@@ -1,8 +1,9 @@
-import type { IKzenUser } from '@/apps/kzen/services/types'
 import bcrypt from 'bcryptjs'
 
-import type { ILoginSchema } from './types'
 import { query_userDataByEmail } from '../../../services/graphql-service/query_userDataByEmail'
+
+import type { ILoginSchema } from './types'
+import type { IKzenUser } from '@/apps/kzen/services/types'
 
 export const validateUserCredentials = async (props: ILoginSchema): Promise<IKzenUser | undefined> => {
     const { email, password } = props

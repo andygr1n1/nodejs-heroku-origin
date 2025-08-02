@@ -1,9 +1,11 @@
-import { auth } from '@/middleware'
 import crypto from 'crypto'
-import type { Express } from 'express'
+
 import fetch from 'node-fetch'
 
+import { auth } from '@/middleware'
+
 import type { KZEN_ROUTE_ENUM } from '../../services/enums'
+import type { Express } from 'express'
 
 export const kZenUploadImageToServer = (app: Express, route: KZEN_ROUTE_ENUM, folder: string) => {
     app.post(route, auth, async function (req, res) {

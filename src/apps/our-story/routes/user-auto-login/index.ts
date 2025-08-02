@@ -1,11 +1,13 @@
 import { ServerStatus } from '@/apps/kzen/services/types'
 import { auth } from '@/middleware'
-import type { Express, Response, Request } from 'express'
+
+import { OUR_STORY_ROUTE_ENUM } from '../../services/enums'
+import { guestTokenizer } from '../../services/guest-tokenizer'
 
 import { testAuthorization } from './helpers/testAuthorization'
 import { validateIdentity } from './service/validateIdentity'
-import { OUR_STORY_ROUTE_ENUM } from '../../services/enums'
-import { guestTokenizer } from '../../services/guest-tokenizer'
+
+import type { Express, Response, Request } from 'express'
 
 /* autologin */
 export const userAutoLogin = (app: Express) => {

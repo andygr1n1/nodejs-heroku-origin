@@ -1,5 +1,6 @@
-import { kzenUserSchema } from '@/apps/kzen/services/types'
 import { z } from 'zod'
+
+import { kzenUserSchema } from '@/apps/kzen/services/types'
 
 const heroesTokensSchema = z.object({
     token: z.string(),

@@ -1,5 +1,6 @@
-import { Zerr } from '@/middleware'
 import jwt from 'jsonwebtoken'
+
+import { Zerr } from '@/middleware'
 
 export const setupSessionToken = ({ sessionId }: { sessionId: string }) => {
     const jwtRefreshSecret = process.env.JWT_REFRESH_SECRET

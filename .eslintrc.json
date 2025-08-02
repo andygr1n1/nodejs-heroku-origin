@@ -24,6 +24,10 @@
             "@typescript-eslint/parser": [".ts", ".tsx"]
         },
         "import/resolver": {
+            "typescript": {
+                "alwaysTryTypes": true,
+                "project": "./tsconfig.json"
+            },
             "alias": {
                 "map": [["@", "./src"]],
                 "extensions": [".js", ".jsx", ".ts", ".tsx"]
@@ -42,7 +46,15 @@
         "import/order": [
             "error",
             {
-                "groups": [["builtin", "external", "internal"]],
+                "groups": [
+                    "builtin",
+                    "external",
+                    "internal",
+                    "parent",
+                    "sibling",
+                    "index",
+                    "type"
+                ],
                 "pathGroups": [
                     {
                         "pattern": "react",
@@ -58,8 +70,6 @@
                 }
             }
         ],
-        // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-        // e.g. "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/consistent-type-imports": "error"
     }
 }

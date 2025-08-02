@@ -1,5 +1,6 @@
-import { UserRoleSchema } from '@/apps/kzen/services/types'
 import { z } from 'zod'
+
+import { UserRoleSchema } from '@/apps/kzen/services/types'
 
 const identitySchema = z.object({
     id: z.string().uuid(),

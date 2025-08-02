@@ -1,9 +1,11 @@
 import { auth } from '@/middleware'
-import type { Express, Response, Request } from 'express'
+
+import { OUR_STORY_ROUTE_ENUM } from '../../services/enums'
 
 import { sendInformationEmail } from './helpers/sendInformationEmail'
 import { sendSuperUserEmail } from './helpers/sendSuperUserEmail'
-import { OUR_STORY_ROUTE_ENUM } from '../../services/enums'
+
+import type { Express, Response, Request } from 'express'
 
 /* autologin */
 export const userSendEmail = (app: Express) => {

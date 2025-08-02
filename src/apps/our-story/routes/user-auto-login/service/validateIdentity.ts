@@ -1,7 +1,8 @@
+import jwt from 'jsonwebtoken'
+
 import { graphql } from '@/graphql/tada'
 import { Zerr } from '@/middleware'
 import { generateClient } from '@/services/graphql-service'
-import jwt from 'jsonwebtoken'
 
 import type { IIdentitySchema, IParseJwtSchema, IValidateIdentityResponseSchema } from './types'
 

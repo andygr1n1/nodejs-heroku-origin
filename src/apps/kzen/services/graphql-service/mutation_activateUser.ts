@@ -1,7 +1,9 @@
-import type { IKzenUser } from '@/apps/kzen/services/types'
+import { gql } from 'graphql-request'
+
 import { Zerr } from '@/middleware'
 import { generateClient } from '@/services/graphql-service'
-import { gql } from 'graphql-request'
+
+import type { IKzenUser } from '@/apps/kzen/services/types'
 
 export const mutation_activateUser = async (password: string): Promise<IKzenUser | undefined> => {
     try {
