@@ -6,7 +6,7 @@ import 'express-async-errors'
 import fileUpload from 'express-fileupload'
 
 export const useAddons = (app: Express) => {
-    app.use(express.json())
+    app.use(express.json({ limit: '5mb' }))
     app.use(bodyParser.json())
     // app.use(cors(/* { credentials: true } */))
 
@@ -57,7 +57,7 @@ export const useAddons = (app: Express) => {
             },
         }),
     )
-    app.use(fileUpload())
+    app.use(fileUpload({ limits: { fileSize: 100 * 1024 * 1024 } }))
     app.use('/public', express.static('public'))
     app.use(cookieParser())
 }
