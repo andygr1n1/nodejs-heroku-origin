@@ -4,6 +4,7 @@ import { kZenAutoRitualizeGoal } from './auto-ritualize-goals/kZenAutoRitualizeG
 import { kZenDeleteImageFromServer } from './delete-image-from-server/kZenDeleteImageFromServer'
 import { kZenDestroyData } from './destroy-data/kZenDestroyData'
 import { kZenUploadImageToServer } from './upload-image-to-server/kZenUploadImageToServer'
+import { kZenUploadImageToServerBinary } from './upload-image-to-server/kZenUploadImageToServerBinary'
 import { userActivation } from './user-activation'
 import { userGetInformation } from './user-get-information'
 import { userLogin } from './user-login'
@@ -58,6 +59,7 @@ export const useKzenRoutes = (app: Express) => {
     kZenDeleteImageFromServer(app, KZEN_ROUTE_ENUM.ACH_IMAGE_DELETE, 'achievements')
 
     kZenUploadImageToServer(app, KZEN_ROUTE_ENUM.STORY_IMAGE_UPLOAD, 'stories')
+    kZenUploadImageToServerBinary(app, KZEN_ROUTE_ENUM.STORY_IMAGE_UPLOAD_BINARY, 'stories')
     kZenDeleteImageFromServer(app, KZEN_ROUTE_ENUM.STORY_IMAGE_DELETE, 'stories')
     // kzen autoRitualizeGoal
     kZenAutoRitualizeGoal(app)

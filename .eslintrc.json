@@ -46,15 +46,7 @@
         "import/order": [
             "error",
             {
-                "groups": [
-                    "builtin",
-                    "external",
-                    "internal",
-                    "parent",
-                    "sibling",
-                    "index",
-                    "type"
-                ],
+                "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "type"],
                 "pathGroups": [
                     {
                         "pattern": "react",
@@ -70,6 +62,7 @@
                 }
             }
         ],
-        "@typescript-eslint/consistent-type-imports": "error"
+        "@typescript-eslint/consistent-type-imports": "error",
+        "import/no-named-as-default-member": "off"
     }
 }
