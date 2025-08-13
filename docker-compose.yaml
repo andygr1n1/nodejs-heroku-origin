@@ -1,28 +1,16 @@
 networks:
     kzen-backend-network:
-        external: true  # Indicate that this network is external and already exists
+        external: true
 services:
-    kzen-backend-service:
-        container_name: kzen-backend-container
+    service-nodeserverprod:
+        container_name: container-nodeserverprod
         build:
             context: .
             dockerfile: Dockerfile
         ports:
-            - '8008:8008'
+            - '8008:8080'
         restart: unless-stopped
         networks:
             - kzen-backend-network
         env_file:
             - .env
-    kzen-backend-nginx:
-        container_name: kzen-backend-nginx
-        image: nginx
-        ports:
-            - '444:444'
-        volumes:
-            - ./nginx.conf:/etc/nginx/conf.d/default.conf
-            - /etc/letsencrypt:/etc/letsencrypt:ro
-        depends_on:
-            - kzen-backend-service
-        networks:
-            - kzen-backend-network

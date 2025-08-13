@@ -13,7 +13,6 @@ RUN apk --no-cache add bash \
     && yarn install
 
 EXPOSE 8008
-EXPOSE 444
 
 # Run your application
 CMD ["node", "build/index.mjs"]
