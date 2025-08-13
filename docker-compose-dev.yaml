@@ -1,0 +1,16 @@
+networks:
+    kzen-backend-network:
+        external: true
+services:
+    service-nodeserverdev:
+        container_name: container-nodeserverdev
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - '8009:8080'
+        restart: unless-stopped
+        networks:
+            - kzen-backend-network
+        env_file:
+            - .env
