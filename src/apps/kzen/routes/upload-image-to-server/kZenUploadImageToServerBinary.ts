@@ -42,7 +42,7 @@ export const kZenUploadImageToServerBinary = (app: Express, route: KZEN_ROUTE_EN
 
             const uploadImageRes = await fetch(url, options).catch((err) => console.error('error:' + err))
 
-            if (uploadImageRes?.status === 200) {
+            if (uploadImageRes?.status === 201) {
                 if (imgPathDelete) {
                     const urlOnDelete = `${process.env.BUNNY_STORAGE_URL_KZEN}/${folder}/${imgPathDelete}`
                     const options = {
@@ -55,7 +55,6 @@ export const kZenUploadImageToServerBinary = (app: Express, route: KZEN_ROUTE_EN
                     await fetch(urlOnDelete, options)
                         .then((json) => {
                             console.info(json.status)
-                            console.log(`image deleted: ${imgPathDelete}-------------------------------`)
                         })
                         .catch((err) => {
                             console.error('error:' + err)
@@ -63,11 +62,14 @@ export const kZenUploadImageToServerBinary = (app: Express, route: KZEN_ROUTE_EN
                         })
                 }
 
-                return res.status(200).send({
+                res.status(200).send({
+                    fileName,
                     insertedImage: fileName,
                     deletedImage: imgPathDelete,
                     status: 200,
                 })
+            } else {
+                throw { msg: 'kZenUploadImageToServerBinary:uploadImageRes error' }
             }
         } catch (e) {
             console.error(e)
