@@ -15,6 +15,7 @@ export const kZenUploadImageToServerBinary = (app: Express, route: KZEN_ROUTE_EN
             const uploadedFile: UploadedFile | undefined = Array.isArray(fileField) ? fileField[0] : fileField
             const userId = req.body.userId
             const folder = req.body.folder
+            const imgPathDelete = req.body.imgPathDelete
 
             if (!uploadedFile || !userId) {
                 throw { msg: 'kZenUploadImageToServer:bad data' }
@@ -39,14 +40,35 @@ export const kZenUploadImageToServerBinary = (app: Express, route: KZEN_ROUTE_EN
                 body: uploadedFile.data,
             }
 
-            await fetch(url, options)
-                .then(() =>
-                    res.status(200).send({
-                        fileName,
-                        status: 200,
-                    }),
-                )
-                .catch((err) => console.error('error:' + err))
+            const uploadImageRes = await fetch(url, options).catch((err) => console.error('error:' + err))
+
+            if (uploadImageRes?.status === 200) {
+                if (imgPathDelete) {
+                    const urlOnDelete = `${process.env.BUNNY_STORAGE_URL_KZEN}/${folder}/${imgPathDelete}`
+                    const options = {
+                        method: 'DELETE',
+                        headers: {
+                            AccessKey,
+                            'content-type': 'application/octet-stream',
+                        },
+                    }
+                    await fetch(urlOnDelete, options)
+                        .then((json) => {
+                            console.info(json.status)
+                            console.log(`image deleted: ${imgPathDelete}-------------------------------`)
+                        })
+                        .catch((err) => {
+                            console.error('error:' + err)
+                            throw { msg: 'kZenUploadImageToServerBinary:imgPathDelete error' }
+                        })
+                }
+
+                return res.status(200).send({
+                    insertedImage: fileName,
+                    deletedImage: imgPathDelete,
+                    status: 200,
+                })
+            }
         } catch (e) {
             console.error(e)
             return res.status(500).send(e)
