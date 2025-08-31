@@ -24,7 +24,7 @@ useOurStoryRoutes(app)
 useTestRoutes(app)
 
 app.get('/', (req, res) => {
-    return res.json('Kzen drive')
+    return res.json('Kzen drive_v1')
 })
 
 app.use(errorHandling)
