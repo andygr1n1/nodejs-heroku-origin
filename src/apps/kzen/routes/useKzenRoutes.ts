@@ -43,6 +43,9 @@ export const useKzenRoutes = (app: Express) => {
 
     userGetInformation(app)
 
+    /* need to provide folder in request body */
+    kZenUploadImageToServerBinary(app, KZEN_ROUTE_ENUM.IMAGE_UPLOAD_BINARY)
+
     // kzen upload/remove profile image
     kZenUploadImageToServer(app, KZEN_ROUTE_ENUM.PROFILE_IMAGE_UPLOAD, 'avatars')
     kZenDeleteImageFromServer(app, KZEN_ROUTE_ENUM.PROFILE_IMAGE_DELETE, 'avatars')
@@ -59,7 +62,7 @@ export const useKzenRoutes = (app: Express) => {
     kZenDeleteImageFromServer(app, KZEN_ROUTE_ENUM.ACH_IMAGE_DELETE, 'achievements')
 
     kZenUploadImageToServer(app, KZEN_ROUTE_ENUM.STORY_IMAGE_UPLOAD, 'stories')
-    kZenUploadImageToServerBinary(app, KZEN_ROUTE_ENUM.STORY_IMAGE_UPLOAD_BINARY, 'stories')
+
     kZenDeleteImageFromServer(app, KZEN_ROUTE_ENUM.STORY_IMAGE_DELETE, 'stories')
     // kzen autoRitualizeGoal
     kZenAutoRitualizeGoal(app)

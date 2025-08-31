@@ -8,15 +8,20 @@ import type { KZEN_ROUTE_ENUM } from '../../services/enums'
 import type { Express } from 'express'
 import type { UploadedFile } from 'express-fileupload'
 
-export const kZenUploadImageToServerBinary = (app: Express, route: KZEN_ROUTE_ENUM, folder: string) => {
+export const kZenUploadImageToServerBinary = (app: Express, route: KZEN_ROUTE_ENUM) => {
     app.post(route, auth, async function (req, res) {
         try {
             const fileField = req.files?.binary
             const uploadedFile: UploadedFile | undefined = Array.isArray(fileField) ? fileField[0] : fileField
             const userId = req.body.userId
+            const folder = req.body.folder
 
             if (!uploadedFile || !userId) {
                 throw { msg: 'kZenUploadImageToServer:bad data' }
+            }
+
+            if (!folder) {
+                throw { msg: 'kZenUploadImageToServerBinary:folder is required' }
             }
 
             const fileName = `${userId}_${crypto.randomUUID()}_${folder}.jpeg`
