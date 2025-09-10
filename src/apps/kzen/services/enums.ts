@@ -1,5 +1,6 @@
 export enum KZEN_ROUTE_ENUM {
     IMAGE_UPLOAD_BINARY = '/kzen/image-upload-binary',
+    IMAGES_UPLOAD = '/kzen/images-upload',
     IMAGE_DELETE = '/kzen/image-delete',
     STORY_IMAGE_UPLOAD = '/kzen/story-image-upload',
     STORY_IMAGE_DELETE = '/kzen/story-image-delete',

@@ -5,6 +5,7 @@ import { kZenDeleteImageFromServer } from './delete-image-from-server/kZenDelete
 import { kZenDestroyData } from './destroy-data/kZenDestroyData'
 import { kZenUploadImageToServer } from './upload-image-to-server/kZenUploadImageToServer'
 import { kZenUploadImageToServerBinary } from './upload-image-to-server/kZenUploadImageToServerBinary'
+import { kZenUploadIMagesToCdn } from './upload-images-to-cdn/kZenUploadImagesCdn'
 import { userActivation } from './user-activation'
 import { userGetInformation } from './user-get-information'
 import { userLogin } from './user-login'
@@ -45,6 +46,9 @@ export const useKzenRoutes = (app: Express) => {
 
     /* need to provide folder in request body */
     kZenUploadImageToServerBinary(app, KZEN_ROUTE_ENUM.IMAGE_UPLOAD_BINARY)
+
+    /* multiple images upload */
+    kZenUploadIMagesToCdn(app, KZEN_ROUTE_ENUM.IMAGES_UPLOAD)
 
     // kzen upload/remove profile image
     kZenUploadImageToServer(app, KZEN_ROUTE_ENUM.PROFILE_IMAGE_UPLOAD, 'avatars')

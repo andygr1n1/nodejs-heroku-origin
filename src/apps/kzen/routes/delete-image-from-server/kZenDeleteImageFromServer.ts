@@ -9,10 +9,6 @@ export const kZenDeleteImageFromServer = (app: Express, route: KZEN_ROUTE_ENUM, 
             const storageFolder = folder || req.body?.table?.name
             const imgTitle = req.body?.event?.data?.old?.img_path || req.body.imgTitle
 
-            console.log('---kZenDeleteImageFromServer---')
-            console.log('storageFolder', storageFolder)
-            console.log('imgTitle', imgTitle)
-
             if (!imgTitle) {
                 throw { msg: 'kZenProfileImageDelete:bad data' }
             }
