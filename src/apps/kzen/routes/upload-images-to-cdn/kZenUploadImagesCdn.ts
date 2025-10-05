@@ -41,51 +41,74 @@ export const kZenUploadIMagesToCdn = (app: Express, route: KZEN_ROUTE_ENUM) => {
 
                 const imageFile = file.data
 
-                const processedImagePromise = sharp(imageFile)
-                    .resize(1920, 1080, {
-                        fit: 'inside',
-                        withoutEnlargement: true,
-                    })
-                    .jpeg({
-                        quality: 100,
-                        progressive: true,
-                        mozjpeg: true,
-                    })
-                    .toBuffer()
-                    .then(async (processedBuffer) => processedBuffer)
-                    .catch(async (err) => {
-                        console.error('Sharp processing error:', err)
-                        // Fallback: try without resizing
-                        try {
-                            const fallbackBuffer = await sharp(imageFile)
-                                .jpeg({
-                                    quality: 100,
-                                    progressive: true,
-                                    mozjpeg: true,
-                                })
-                                .toBuffer()
-                            return fallbackBuffer
-                        } catch (fallbackErr) {
-                            console.error('Fallback processing also failed:', fallbackErr)
-                            return imageFile
-                        }
-                    })
+                // Check if file is SVG
+                const isSvg = file.mimetype === 'image/svg+xml' || file.name.toLowerCase().endsWith('.svg')
 
-                const uploadPromise = processedImagePromise.then(async (binaryImage) => {
+                let uploadPromise: Promise<fetch.Response | null>
+
+                if (isSvg) {
+                    // For SVG files, upload directly without Sharp processing
                     const options = {
                         method: 'PUT',
                         headers: {
                             AccessKey,
-                            'content-type': 'application/octet-stream',
+                            'content-type': 'image/svg+xml',
                         },
-                        body: binaryImage,
+                        body: imageFile,
                     }
 
-                    return fetch(url, options).catch((err) => {
-                        console.error('upload error:', err)
+                    uploadPromise = fetch(url, options).catch((err) => {
+                        console.error('SVG upload error:', err)
                         return null
                     })
-                })
+                } else {
+                    // For raster images, process with Sharp
+                    const processedImagePromise = sharp(imageFile)
+                        .resize(1920, 1080, {
+                            fit: 'inside',
+                            withoutEnlargement: true,
+                        })
+                        .jpeg({
+                            quality: 100,
+                            progressive: true,
+                            mozjpeg: true,
+                        })
+                        .toBuffer()
+                        .then(async (processedBuffer) => processedBuffer)
+                        .catch(async (err) => {
+                            console.error('Sharp processing error:', err)
+                            // Fallback: try without resizing
+                            try {
+                                const fallbackBuffer = await sharp(imageFile)
+                                    .jpeg({
+                                        quality: 100,
+                                        progressive: true,
+                                        mozjpeg: true,
+                                    })
+                                    .toBuffer()
+                                return fallbackBuffer
+                            } catch (fallbackErr) {
+                                console.error('Fallback processing also failed:', fallbackErr)
+                                return imageFile
+                            }
+                        })
+
+                    uploadPromise = processedImagePromise.then(async (binaryImage) => {
+                        const options = {
+                            method: 'PUT',
+                            headers: {
+                                AccessKey,
+                                'content-type': 'application/octet-stream',
+                            },
+                            body: binaryImage,
+                        }
+
+                        return fetch(url, options).catch((err) => {
+                            console.error('upload error:', err)
+                            return null
+                        })
+                    })
+                }
 
                 uploadPromises.push(uploadPromise)
             }
