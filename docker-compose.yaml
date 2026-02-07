@@ -1,16 +1,11 @@
-networks:
-    kzen-backend-network:
-        external: true
 services:
-    service-nodeserverprod:
-        container_name: container-nodeserverprod
-        build:
-            context: .
-            dockerfile: Dockerfile
-        ports:
-            - '8008:8008'
-        restart: unless-stopped
-        networks:
-            - kzen-backend-network
-        env_file:
-            - .env
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kzen-node
+    ports:
+      - "8008:8008"
+    restart: unless-stopped
+    env_file:
+      - .env

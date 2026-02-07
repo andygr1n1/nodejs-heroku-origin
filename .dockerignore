@@ -1,4 +1,16 @@
+.env
 .env.local
 .env.production
 .env.development
 node_modules
+build
+.git
+.gitignore
+*.md
+.husky
+.vscode
+.eslintignore
+.eslintrc.json
+.prettierrc
+docker-compose*.yaml
+docker-compose*.yml

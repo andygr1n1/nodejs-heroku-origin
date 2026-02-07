@@ -12,18 +12,21 @@ RUN apk --no-cache add \
     make \
     g++
 
-# Copy package files first for better caching
+# Copy package files first for better layer caching
 COPY package.json yarn.lock ./
 
-# Install dependencies with platform-specific sharp
+# Install dependencies (including sharp for linuxmusl for Alpine)
 RUN npm install -g yarn@1.22.22 --force \
     && yarn install --frozen-lockfile \
     && yarn add sharp --platform=linuxmusl --arch=x64
 
-# Copy the built application
-COPY ./build ./build
+# Copy application source (build runs in Docker; no pre-built ./build needed)
+COPY . .
+
+# Build the app (Dokploy/GitHub sync clones repo without build folder)
+RUN yarn build
 
 EXPOSE 8008
 
-# Run your application
+# Run the application
 CMD ["node", "build/index.mjs"]

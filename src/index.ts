@@ -12,7 +12,7 @@ import { envSchema } from './services/types'
 dotenv.config()
 /* Parse the environment variables */
 envSchema.parse(process.env)
-const PORT = process.env.PORT || 4554
+const PORT = process.env.PORT || 8008
 const app = express()
 
 useAddons(app)

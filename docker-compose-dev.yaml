@@ -1,16 +1,13 @@
-networks:
-    kzen-backend-network:
-        external: true
+# Dev environment – use in Dokploy with branch e.g. develop/dev
+# In Dokploy: set Compose path to "docker-compose-dev.yaml"
 services:
-    service-nodeserverdev:
-        container_name: container-nodeserverdev
-        build:
-            context: .
-            dockerfile: Dockerfile
-        ports:
-            - '8009:8080'
-        restart: unless-stopped
-        networks:
-            - kzen-backend-network
-        env_file:
-            - .env
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kzen-node-dev
+    ports:
+      - "8009:8008"
+    restart: unless-stopped
+    env_file:
+      - .env
